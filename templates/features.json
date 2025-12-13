@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "project_name": "",
+    "created_at": "",
+    "last_updated": "",
+    "total_features": 0,
+    "completed": 0
+  },
+  "features": [
+    {
+      "id": "F001",
+      "name": "Example Feature",
+      "description": "What this feature does",
+      "acceptance_criteria": [
+        {"criterion": "Specific testable condition 1", "passes": false, "verified_at": null},
+        {"criterion": "Specific testable condition 2", "passes": false, "verified_at": null}
+      ],
+      "dependencies": [],
+      "priority": "high",
+      "passes": false,
+      "branch": null,
+      "notes": "",
+      "last_updated": null
+    }
+  ],
+  "completed_features": []
+}
