@@ -14,6 +14,9 @@
 | `/project:add-feature` | Add to backlog |
 | `/project:security-scan` | Security check |
 | `/project:tdd` | Test-driven development |
+| `/project:decide` | High-stakes decision analysis |
+| `/project:constraints` | Define implementation boundaries |
+| `/project:perspectives` | Multi-viewpoint analysis |
 
 ---
 

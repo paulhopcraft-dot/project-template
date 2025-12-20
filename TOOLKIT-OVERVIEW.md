@@ -144,6 +144,9 @@ Each level allocates more thinking budget.
 | `/project:verify` | Test all "passing" features actually work |
 | `/project:handoff` | Save state for next session |
 | `/project:review` | Code review current work |
+| `/project:decide` | High-stakes decision with confidence weighting |
+| `/project:constraints` | Define implementation boundaries |
+| `/project:perspectives` | Multi-viewpoint analysis |
 
 ---
 
