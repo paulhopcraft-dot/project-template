@@ -50,3 +50,31 @@ Your context window will be automatically compacted as it approaches its limit, 
 - Be specific about what works and what doesn't
 - If something isn't working, say so clearly rather than working around it
 - Update claude-progress.txt after each completed task
+
+## PRD Enforcement
+
+**Product Requirements Document (PRD) Location:**
+- Primary: /docs/PRD/[PROJECT]-PRD.md
+- Fallback: /docs/REQUIREMENTS.md
+
+**PRD-Aware Commands:**
+- `/prd-check` - Verify alignment before work
+- `/build-prd` - Build with PRD enforcement
+- `/edit-prd` - Edit with PRD validation
+- `/design-prd` - Design within PRD constraints
+
+**Rules:**
+1. NO code changes without PRD support
+2. Quote PRD sections in commits for non-obvious decisions
+3. If PRD is unclear, STOP and ask
+4. Never invent requirements not in PRD
+
+**Traceability:**
+All features in features.json must reference PRD sections:
+```json
+{
+  "id": "F001",
+  "prd_section": "3.2.1",
+  "prd_requirement": "Description from PRD"
+}
+```

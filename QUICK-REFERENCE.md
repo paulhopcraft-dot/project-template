@@ -18,6 +18,17 @@
 | `/project:constraints` | Define implementation boundaries |
 | `/project:perspectives` | Multi-viewpoint analysis |
 
+## PRD Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/prd-check [path]` | Verify alignment with PRD |
+| `/build-prd [section] [desc]` | Build feature per PRD section |
+| `/edit-prd [change]` | Edit with PRD validation |
+| `/design-prd [feature]` | Design within PRD bounds |
+
+**Rule:** No changes without PRD support.
+
 ---
 
 ## Thinking Triggers

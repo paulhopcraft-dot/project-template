@@ -148,6 +148,14 @@ Each level allocates more thinking budget.
 | `/project:constraints` | Define implementation boundaries |
 | `/project:perspectives` | Multi-viewpoint analysis |
 
+### PRD-Aware Commands
+| Command | Purpose |
+|---------|---------|
+| `/prd-check` | Verify PRD alignment before changes |
+| `/build-prd` | Build with PRD enforcement |
+| `/edit-prd` | Edit with PRD validation |
+| `/design-prd` | Design within PRD constraints |
+
 ---
 
 ## Engineering Constraints (Always Active)
