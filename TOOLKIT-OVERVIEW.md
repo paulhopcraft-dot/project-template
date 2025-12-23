@@ -49,8 +49,10 @@ claude-code-toolkit/
 │   └── add-feature.md
 │
 ├── skills/                      # For /mnt/skills/user/
-│   └── engineering-mode/
-│       └── SKILL.md             # Global engineering constraints
+│   ├── engineering-mode/
+│   │   └── SKILL.md             # Global engineering constraints
+│   └── frontend-design/
+│       └── SKILL.md             # Anthropic's UI design skill
 │
 └── agents/
     ├── initializer-agent.md     # First context window setup
