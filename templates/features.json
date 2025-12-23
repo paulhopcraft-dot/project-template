@@ -1,4 +1,5 @@
 {
+  "$schema": "./features.schema.json",
   "metadata": {
     "project_name": "",
     "created_at": "",

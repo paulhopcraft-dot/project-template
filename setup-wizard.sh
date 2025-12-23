@@ -4,10 +4,15 @@
 
 set -e
 
+# Get toolkit directory (where this script lives)
+TOOLKIT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "╔════════════════════════════════════════╗"
 echo "║   Claude Code Setup Wizard             ║"
 echo "║   Answer questions, I'll do the rest   ║"
 echo "╚════════════════════════════════════════╝"
+echo ""
+echo "Toolkit location: $TOOLKIT_DIR"
 echo ""
 
 # Helper functions
@@ -166,24 +171,22 @@ PROGRESS_EOF
     echo "✓ Created claude-progress.txt"
 fi
 
-# Step 6: Create slash commands
-echo "📝 Creating slash commands..."
+# Step 6: Copy all slash commands from toolkit
+echo "═══════════════════════════════════════"
+echo "Step 6: Installing Slash Commands"
+echo "═══════════════════════════════════════"
+echo ""
 
-cat > .claude/commands/init-project.md << 'CMD_EOF'
----
-description: Initialize project with features list
----
-
-Read @spec.md, then:
-1. Create features.json with testable features (all "passes": false)
-2. Create architecture.md documenting decisions
-3. Set up testing framework if needed
-4. Make initial git commit
-
-Think hard about the feature list - be comprehensive.
-CMD_EOF
-
-cat > .claude/commands/continue.md << 'CMD_EOF'
+if [ -d "$TOOLKIT_DIR/commands" ]; then
+    echo "📝 Copying all 29 slash commands..."
+    cp -r "$TOOLKIT_DIR/commands/"*.md .claude/commands/
+    COMMAND_COUNT=$(ls -1 .claude/commands/*.md 2>/dev/null | wc -l)
+    echo "✓ Installed $COMMAND_COUNT slash commands"
+else
+    echo "⚠️  Warning: Toolkit commands directory not found"
+    echo "   Creating basic commands as fallback..."
+    # Fallback to basic commands if toolkit not found
+    cat > .claude/commands/continue.md << 'CMD_EOF'
 ---
 description: Continue working on next feature
 ---
@@ -198,32 +201,28 @@ description: Continue working on next feature
 
 $ARGUMENTS
 CMD_EOF
+    echo "✓ Created basic commands"
+fi
+echo ""
 
-cat > .claude/commands/status.md << 'CMD_EOF'
----
-description: Show project progress
----
+# Step 7: Copy skills from toolkit
+echo "═══════════════════════════════════════"
+echo "Step 7: Installing Skills"
+echo "═══════════════════════════════════════"
+echo ""
 
-Read @features.json and report:
-- Total / Completed / Remaining
-- Current blockers
-- Next features to work on
-CMD_EOF
+if [ -d "$TOOLKIT_DIR/skills" ]; then
+    echo "📝 Installing Claude Code skills..."
+    mkdir -p .claude/skills
+    cp -r "$TOOLKIT_DIR/skills/"* .claude/skills/
+    SKILL_COUNT=$(ls -1d .claude/skills/*/ 2>/dev/null | wc -l)
+    echo "✓ Installed $SKILL_COUNT skills (engineering-mode, frontend-design)"
+else
+    echo "⚠️  Warning: Toolkit skills directory not found"
+fi
+echo ""
 
-cat > .claude/commands/handoff.md << 'CMD_EOF'
----
-description: Save state for next session
----
-
-1. Commit uncommitted work
-2. Update features.json
-3. Write session summary to claude-progress.txt
-4. Push if configured
-CMD_EOF
-
-echo "✓ Created slash commands"
-
-# Step 7: Create spec.md template (new projects only)
+# Step 8: Create spec.md template (new projects only)
 if [ "$MODE" = "new" ] && [ ! -f "spec.md" ]; then
     echo "📝 Creating spec.md template..."
     cat > spec.md << 'SPEC_EOF'
@@ -249,7 +248,14 @@ SPEC_EOF
     echo "✓ Created spec.md"
 fi
 
-# Step 8: Git init if needed
+# Step 9: Copy .gitignore if available
+if [ ! -f ".gitignore" ] && [ -f "$TOOLKIT_DIR/templates/.gitignore" ]; then
+    echo "📝 Creating .gitignore..."
+    cp "$TOOLKIT_DIR/templates/.gitignore" .gitignore
+    echo "✓ Created .gitignore"
+fi
+
+# Step 10: Git init if needed
 echo ""
 if [ ! -d ".git" ]; then
     if ask_yes_no "Initialize git repository?"; then

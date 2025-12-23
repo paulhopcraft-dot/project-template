@@ -47,22 +47,55 @@ Browser Claude (Opus)              Claude Code (Sonnet)
 | File | Purpose |
 |------|---------|
 | `CLAUDE.md` | Project rules Claude Code always reads |
-| `features.json` | Track features (red until verified) |
+| `features.json` | Track features with JSON schema validation |
+| `features.schema.json` | Validation schema for features.json |
 | `claude-progress.txt` | Session handoff notes |
+| `.gitignore` | Comprehensive gitignore for all stacks |
+| `.env.example` | Environment variables template |
 
-### Slash Commands (created in .claude/commands/)
+### Skills (installed automatically)
 
-| Command | What it does |
-|---------|--------------|
-| `/project:continue` | Work on next feature |
-| `/project:status` | Show progress |
-| `/project:verify` | Test all features |
-| `/project:handoff` | Save state for next session |
-| `/project:review` | Code review |
-| `/project:branch` | Manage branches |
-| `/project:add-feature` | Add to backlog |
-| `/project:security-scan` | Security check |
-| `/project:tdd` | Test-driven development |
+- **engineering-mode**: Global code quality standards and workflow rules
+- **frontend-design**: Anthropic's official UI design skill for distinctive interfaces
+
+### Test Templates
+
+Stack-specific test examples in `templates/tests/`:
+- Python (pytest)
+- TypeScript/Node (Vitest/Jest)
+- Go (standard testing)
+
+### CI/CD Workflows
+
+GitHub Actions templates in `templates/.github/workflows/`:
+- Python CI (test, lint, security)
+- Node.js CI (test, lint, build)
+
+### Slash Commands (30+ commands installed automatically)
+
+**Core Workflow:**
+- `/project:continue` - Work on next feature
+- `/project:status` - Show progress
+- `/project:verify` - Test all features
+- `/project:handoff` - Save state for next session
+- `/help` - Search and find commands
+
+**PRD & Requirements:**
+- `/prd-check` - Verify alignment with PRD
+- `/build-prd` - Build with PRD enforcement
+- `/edit-prd` - Edit with PRD validation
+- `/design-prd` - Design within PRD constraints
+
+**Decision Making:**
+- `/decide` - High-stakes decisions with confidence weighting
+- `/constraints` - Define implementation boundaries
+- `/perspectives` - Multi-viewpoint analysis
+
+**Recovery & Validation:**
+- `/recover` - Fix broken project state
+- `/validate-features` - Check features.json validity
+
+...and 20+ more! Use `/help` to see all commands.
 
 ## Core Concepts
 
@@ -139,11 +172,32 @@ Press `Escape` to stop Claude and redirect.
 3. `/project:continue` (repeat)
 4. `/project:handoff` (end of day)
 
+## New in v2.0
+
+### Production-Ready Features
+- **JSON Schema Validation**: features.json validates against schema automatically
+- **Test Templates**: Ready-to-use test setups for Python, Node, and Go
+- **CI/CD Workflows**: GitHub Actions templates with security scanning
+- **Recovery Commands**: `/recover` fixes broken states, corrupted files, git issues
+- **Comprehensive .gitignore**: Multi-stack .gitignore with security best practices
+- **Environment Templates**: .env.example with all common services
+
+### Enhanced Workflows
+- **PRD Commands**: Build with requirements enforcement for regulated domains
+- **Decision Tools**: `/decide`, `/constraints`, `/perspectives` for high-stakes choices
+- **Branching Strategy**: Complete guide in [docs/BRANCHING-STRATEGY.md](docs/BRANCHING-STRATEGY.md)
+- **Help System**: `/help` command with search functionality
+
+### Skills Integration
+- **Engineering Mode**: Global quality standards across all projects
+- **Frontend Design**: Anthropic's official skill for distinctive UI (no more generic AI aesthetics!)
+
 ## Documentation
 
 - [BEGINNERS-GUIDE.md](BEGINNERS-GUIDE.md) - Step-by-step for non-technical users
 - [QUICK-REFERENCE.md](QUICK-REFERENCE.md) - Cheat sheet
 - [TOOLKIT-OVERVIEW.md](TOOLKIT-OVERVIEW.md) - Full documentation
+- [docs/BRANCHING-STRATEGY.md](docs/BRANCHING-STRATEGY.md) - Git workflow guide
 
 ## Why This Works
 

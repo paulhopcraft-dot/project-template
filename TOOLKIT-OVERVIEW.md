@@ -34,19 +34,20 @@ claude-code-toolkit/
 │
 ├── templates/
 │   ├── CLAUDE.md                # Project root instructions
-│   ├── features.json            # Feature tracking (passes: false default)
+│   ├── features.json            # Feature tracking with schema validation
+│   ├── features.schema.json     # JSON schema for validation
 │   ├── claude-progress.txt      # Session continuity log
-│   └── spec.md                  # Requirements template
+│   ├── .gitignore               # Multi-stack gitignore
+│   ├── .env.example             # Environment variables template
+│   ├── tests/                   # Test templates (Python, TypeScript, Go)
+│   └── .github/workflows/       # CI/CD templates
 │
-├── commands/                    # Slash commands for .claude/commands/
-│   ├── init-project.md
-│   ├── continue.md
-│   ├── status.md
-│   ├── verify.md
-│   ├── handoff.md
-│   ├── review.md
-│   ├── branch.md
-│   └── add-feature.md
+├── commands/                    # 30+ slash commands for .claude/commands/
+│   ├── Core workflow (continue, status, verify, handoff, help)
+│   ├── PRD enforcement (prd-check, build-prd, edit-prd, design-prd)
+│   ├── Decision making (decide, constraints, perspectives)
+│   ├── Recovery & validation (recover, validate-features)
+│   └── ...and 20+ more commands
 │
 ├── skills/                      # For /mnt/skills/user/
 │   ├── engineering-mode/
