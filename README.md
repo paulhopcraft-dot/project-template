@@ -172,6 +172,43 @@ Press `Escape` to stop Claude and redirect.
 3. `/project:continue` (repeat)
 4. `/project:handoff` (end of day)
 
+## New in v2.3 🤖
+
+### Advanced Agent System
+The toolkit now includes a powerful **agent system** with specialist agents that provide expert-level analysis:
+
+**Three Specialist Agents:**
+- **healthcare-validator**: HIPAA compliance, PHI detection, evidence chain validation for healthcare projects
+- **test-specialist**: Test generation, coverage analysis, edge case discovery with AAA pattern expertise
+- **code-reviewer**: Security (OWASP Top 10), code quality (DRY, SOLID), performance (N+1 queries) analysis
+
+**Agent Chaining:**
+- **Sequential chains**: Agents execute one after another, building on previous findings
+- **Parallel chains**: Multiple agents analyze simultaneously, results are merged
+- **Conditional chains**: Domain-specific agents trigger based on project type (healthcare, finance, general)
+
+**Auto-Triggering Commands:**
+- `/verify` → Runs full-verification chain (test-specialist → code-reviewer → domain agent)
+- `/review` → Uses code-reviewer agent for comprehensive code review
+- `/tdd` → Uses test-specialist agent for expert test guidance
+- `/prd-check` → Conditionally triggers healthcare-validator for compliance in healthcare projects
+
+**Domain Detection:**
+- Automatically detects healthcare, revenue, or general development domains from project files
+- Creates appropriate `.claude/domain.json` with domain-specific configuration
+- Enables compliance automation for regulated industries (HIPAA, SOX, etc.)
+
+**Migration:**
+- Run `bash migrate-to-agents.sh` to upgrade existing projects
+- Fully backwards compatible - all commands work with or without agent system
+- Optional installation via setup wizard (Step 7.5)
+
+**Healthcare Domain Features:**
+- Scans for 18 HIPAA PHI identifiers (SSN, MRN, DOB, etc.)
+- Validates HIPAA Security Rule compliance (encryption, access controls, audit logging)
+- Evidence chain schema with immutable audit trail requirements
+- Compliance checklist and templates
+
 ## New in v2.0
 
 ### Production-Ready Features

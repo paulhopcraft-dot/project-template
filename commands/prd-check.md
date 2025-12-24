@@ -6,6 +6,27 @@ description: Verify alignment with PRD before making changes
 Before proceeding with any work, verify alignment with the Product Requirements Document.
 </instructions>
 
+<agent_integration>
+**If Advanced Agent System is installed** (check for `.claude/agents/registry.json`):
+
+<trigger_agent>healthcare-validator</trigger_agent>
+<condition>domain === 'healthcare'</condition>
+
+<agent_workflow>
+If `.claude/domain.json` indicates `"domain": "healthcare"`, the **healthcare-validator agent** will:
+- **PHI Detection**: Scan for Protected Health Information exposure
+- **HIPAA Validation**: Verify compliance with Security and Privacy Rules
+- **Evidence Chain**: Ensure audit trail requirements are met
+- **Claims Processing**: Validate against CMS requirements
+
+This runs AFTER basic PRD alignment check, providing domain-specific compliance validation.
+</agent_workflow>
+
+<fallback>
+If agent system NOT installed or domain is not healthcare, use basic PRD alignment check below.
+</fallback>
+</agent_integration>
+
 <prd_location>
 View the canonical PRD at: $ARGUMENTS
 

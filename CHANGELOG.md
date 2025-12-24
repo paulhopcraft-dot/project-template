@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2025-12-25
+
+### Added - Advanced Agent System 🤖
+- **Agent Registry**: Central registry system for custom agents with conditional triggering
+- **Specialist Agents**: Three production-ready agents with expert capabilities:
+  - `healthcare-validator`: HIPAA compliance, PHI detection, evidence chain validation
+  - `test-specialist`: Test generation, coverage analysis, edge case discovery
+  - `code-reviewer`: Security analysis (OWASP Top 10), code quality, performance review
+- **Agent Chaining**: Sequential, parallel, and conditional agent execution via chain engine
+- **Domain Detection**: Auto-detects healthcare, revenue, or general domains from project files
+- **Migration Script**: `migrate-to-agents.sh` upgrades existing projects to agent system
+- **Healthcare Domain Templates**: Evidence schema, compliance checklist, gpnet-healthcare skill
+- **Domain Configuration**: `.claude/domain.json` for project-specific agent configuration
+
+### Enhanced
+- **Setup Wizard**: Added optional Advanced Agent System installation (Step 7.5)
+- **Command Integration**: Four commands now trigger agents when available:
+  - `/verify`: Runs full-verification chain (test-specialist → code-reviewer → domain agent)
+  - `/review`: Uses code-reviewer agent for expert-level code review
+  - `/tdd`: Uses test-specialist agent for comprehensive test guidance
+  - `/prd-check`: Conditionally triggers healthcare-validator for compliance validation
+- **All 32 Commands**: Converted to XML-enhanced format for better Claude parsing
+- **CLAUDE.md**: Added Autonomous Mode documentation across all projects
+
+### Agent Capabilities
+- **Healthcare Validator**:
+  - Scans for 18 HIPAA PHI identifiers (SSN, MRN, DOB, etc.)
+  - Validates HIPAA Security Rule compliance (encryption, access controls, audit logging)
+  - Verifies evidence chain completeness (who, what, when, why, where, how)
+  - Checks CMS claims processing requirements
+- **Test Specialist**:
+  - Generates unit, integration, and E2E tests using AAA pattern
+  - Identifies untested code paths and missing branch coverage
+  - Discovers edge cases (boundaries, null, empty, errors, concurrency)
+  - Reviews test quality (clarity, independence, brittleness)
+- **Code Reviewer**:
+  - Security: SQL injection, XSS, CSRF, auth vulnerabilities, secret detection
+  - Quality: DRY, SOLID, complexity analysis (cyclomatic < 10), code smells
+  - Performance: N+1 queries, caching opportunities, algorithmic complexity
+  - Maintainability: Naming conventions, documentation, modularity
+
+### Backwards Compatibility
+- ✅ All existing commands work unchanged without agent system
+- ✅ Agent system is optional (can be installed or skipped in setup wizard)
+- ✅ Commands fall back to original behavior if agents not installed
+- ✅ Zero breaking changes to existing workflows
+
+### Domain Configurations
+- **gpnet3**: Configured as healthcare domain with HIPAA compliance automation
+- **goassist3**: Configured as general development domain with quality gates
+
+### Documentation
+- `agents/chain-engine.md`: Comprehensive agent chaining documentation
+- `agents/definitions/*.md`: Three agent definition templates with XML structure
+- `.claude/domains/healthcare/`: Evidence schema, compliance checklist templates
+
+### Migration
+Run `bash migrate-to-agents.sh` in existing projects to upgrade to agent system.
+
+## [2.2.0] - 2025-12-24
+
 ### Added
 - GitHub issue templates (bug report, feature request)
 - Pull request template

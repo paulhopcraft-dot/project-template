@@ -222,6 +222,71 @@ else
 fi
 echo ""
 
+# Step 7.5: Install Advanced Agent System (optional)
+echo "═══════════════════════════════════════"
+echo "Step 7.5: Advanced Agent System (v2.3)"
+echo "═══════════════════════════════════════"
+echo ""
+echo "The Agent System adds specialist agents for:"
+echo "  • Code review (security, quality, performance)"
+echo "  • Test generation (coverage, edge cases)"
+echo "  • Healthcare compliance (HIPAA, PHI detection) - if applicable"
+echo ""
+
+if ask_yes_no "Install Advanced Agent System?"; then
+    if [ -f "$TOOLKIT_DIR/migrate-to-agents.sh" ]; then
+        echo ""
+        echo "Running agent migration..."
+        TOOLKIT_DIR="$TOOLKIT_DIR" bash "$TOOLKIT_DIR/migrate-to-agents.sh"
+        echo ""
+    else
+        echo "⚠️  Warning: migrate-to-agents.sh not found, installing manually..."
+
+        # Manual installation
+        mkdir -p .claude/agents
+        mkdir -p .claude/domains
+
+        if [ -f "$TOOLKIT_DIR/agents/registry.json" ]; then
+            cp "$TOOLKIT_DIR/agents/registry.json" .claude/agents/
+            echo "✓ Agent registry installed"
+        fi
+
+        if [ -d "$TOOLKIT_DIR/agents/definitions" ]; then
+            cp -r "$TOOLKIT_DIR/agents/definitions" .claude/agents/
+            echo "✓ Agent definitions installed"
+        fi
+
+        if [ -f "$TOOLKIT_DIR/agents/chain-engine.md" ]; then
+            cp "$TOOLKIT_DIR/agents/chain-engine.md" .claude/agents/
+            echo "✓ Chain engine installed"
+        fi
+
+        # Create basic domain.json
+        cat > .claude/domain.json << 'DOMAIN_EOF'
+{
+  "domain": "general",
+  "agents": {
+    "enabled": ["test-specialist", "code-reviewer"],
+    "auto_trigger": {
+      "test-specialist": ["tdd", "verify"],
+      "code-reviewer": ["review", "verify"]
+    }
+  },
+  "quality_gates": {
+    "min_test_coverage": 80,
+    "max_complexity": 10,
+    "security_scan": "enabled"
+  }
+}
+DOMAIN_EOF
+        echo "✓ Domain configuration created (general)"
+    fi
+else
+    echo "Skipped agent system installation"
+    echo "You can install it later by running: bash migrate-to-agents.sh"
+fi
+echo ""
+
 # Step 8: Create spec.md template (new projects only)
 if [ "$MODE" = "new" ] && [ ! -f "spec.md" ]; then
     echo "📝 Creating spec.md template..."

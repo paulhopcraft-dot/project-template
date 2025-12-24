@@ -7,6 +7,26 @@ arguments: feature description
 Implement using strict Test-Driven Development: $ARGUMENTS
 </instructions>
 
+<agent_integration>
+**If Advanced Agent System is installed** (check for `.claude/agents/registry.json`):
+
+<trigger_agent>test-specialist</trigger_agent>
+
+<agent_workflow>
+The **test-specialist agent** provides expert testing guidance:
+- **Test Generation**: Create comprehensive unit, integration, and E2E tests
+- **Coverage Analysis**: Identify untested code paths and branches
+- **Edge Case Discovery**: Find boundary conditions and error scenarios
+- **Test Quality**: Review test clarity, independence, and reliability
+
+The agent will enhance the TDD cycle by suggesting additional test cases and validating test quality.
+</agent_workflow>
+
+<fallback>
+If agent system NOT installed, follow standard TDD cycle below.
+</fallback>
+</agent_integration>
+
 <tdd_cycle>
 <phase name="RED" number="1">
 <title>Write Failing Tests First</title>
