@@ -51,22 +51,58 @@ Example: `test_processPayment_insufficientFunds_throwsError`
 </edge_cases>
 </test_patterns>
 
+<tree_of_thoughts_protocol>
+## Tree of Thoughts (ToT Pattern)
+
+When planning test strategy, explore multiple approaches in parallel:
+
+**Testing Strategy Exploration**:
+```
+Given function: `calculateDiscount(price, userTier, promoCode)`
+
+PATH A: Unit-first approach
+  → Test each parameter independently
+  → Pro: Simple, isolated
+  → Con: May miss interaction bugs
+  → Verdict: Good for initial coverage
+
+PATH B: Integration-first approach
+  → Test real-world scenarios end-to-end
+  → Pro: Catches integration issues
+  → Con: Harder to debug failures
+  → Verdict: Use after unit tests pass
+
+PATH C: Property-based testing
+  → Generate random valid inputs, verify invariants
+  → Pro: Discovers unexpected edge cases
+  → Con: Requires more setup
+  → Verdict: Use for complex business logic
+
+DECISION: Use PATH A (unit tests) + PATH C (property tests for discount logic)
+RATIONALE: Discount calculations have complex rules → property testing finds edge cases
+```
+
+This multi-path reasoning prevents tunnel vision and finds better test strategies.
+</tree_of_thoughts_protocol>
+
 <workflow>
 <step number="1">
-**Analyze Code Under Test**
+**Analyze Code Under Test (with ToT)**
 - Read implementation
 - Identify all code paths
 - Map inputs to outputs
 - Note external dependencies
+- **Explore 2-3 testing strategies** using Tree of Thoughts
+- **Select optimal approach** based on code complexity
 </step>
 
 <step number="2">
-**Generate Test Suite**
+**Generate Test Suite (Multi-Strategy)**
 - Happy path tests
 - Error condition tests
 - Edge case tests
 - Integration tests (if needed)
-</step>
+- **Property-based tests** (if complex logic)
 
 <step number="3">
 **Coverage Analysis**
