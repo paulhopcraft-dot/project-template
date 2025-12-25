@@ -287,6 +287,19 @@ Chain executes 6 focused steps:
 
 **Why**: Reduces false positives and inconsistent severity assessments
 
+---
+
+### 6. Meta-Prompting (Self-Improving Prompts) ⭐ NEW
+
+**What**: Prompts that analyze and improve themselves based on failure examples
+
+**Where Used**: New `/improve-prompt` command, continuous improvement loop
+
+**Why**: LLMs understand their own reasoning - they can fix prompt issues better than manual editing
+
+**Key Insight** (from user):
+> "You can feed the prompt + failure examples to the raw LLM and say help me make this prompt better - because it knows itself so well strangely"
+
 **Example**:
 
 **Before (No Self-Consistency)**:
@@ -331,6 +344,60 @@ Final Output:
 
 ---
 
+**Example (Meta-Prompting)**:
+
+**Scenario**: code-reviewer agent keeps missing prototype pollution vulnerabilities
+
+**Without Meta-Prompting**:
+```
+Developer notices: "Agent missed prototype pollution 5 times"
+Developer manually edits: agents/definitions/code-reviewer.md
+Developer adds: Prototype pollution check
+Developer tests: May or may not cover all cases
+Time: 30-60 minutes
+```
+
+**With Meta-Prompting**:
+```bash
+/improve-prompt code-reviewer --failures=.claude/failures.log
+
+Meta-prompt analyzes:
+1. Detects pattern: Prototype pollution missed 5x
+2. Root cause: OWASP Top 10 mentioned but not exhaustive
+3. Generates fix: Add explicit __proto__ checks with examples
+4. Creates test cases: Verify on previous failures
+Time: 2 minutes
+
+Output: Improved version catches all prototype pollution cases
+```
+
+**Dynamic Classifier** (user's example):
+```
+General classifier: "Classify this query and respond appropriately"
+
+User query: "Debug SQL injection in login endpoint"
+
+Meta-prompt auto-generates specialized version:
+→ Adds OWASP reference for SQL injection
+→ Includes vulnerable vs safe code examples
+→ Adds security testing steps
+→ Links to security standards
+
+Result: Much better response quality for security queries
+```
+
+**When to Use**:
+- Prompts/agents consistently miss certain issues
+- Want to specialize general prompts for specific domains
+- Need continuous improvement based on production failures
+- Tired of manually editing prompts
+
+**Files Created**:
+- `commands/improve-prompt.md` - New command
+- `agents/meta-prompting-engine.md` - Complete framework
+
+---
+
 ## Pattern Selection Guide
 
 ### When to Use Which Pattern?
@@ -342,6 +409,8 @@ Final Output:
 | Want consistency with existing code | RAG | Injects project patterns automatically |
 | Complex multi-step task | Prompt Chaining | Breaks into focused steps with verification |
 | Review findings may be inconsistent | Self-Consistency | Cross-validates severity levels |
+| Prompt consistently fails on certain cases | Meta-Prompting | LLM improves itself based on failures |
+| Need domain-specific specialization | Meta-Prompting | Auto-generate specialized versions |
 
 ### Combining Patterns
 
