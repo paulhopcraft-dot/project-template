@@ -28,8 +28,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `/review`: Uses code-reviewer agent for expert-level code review
   - `/tdd`: Uses test-specialist agent for comprehensive test guidance
   - `/prd-check`: Conditionally triggers healthcare-validator for compliance validation
-- **All 32 Commands**: Converted to XML-enhanced format for better Claude parsing
+- **All Commands**: 33 total commands (32 converted to XML format + new /toolkit:check)
 - **CLAUDE.md**: Added Autonomous Mode documentation across all projects
+- **New /toolkit:check Command**: Comprehensive validation of toolkit installation
+  - Validates core files, commands, skills, agents, domain configuration
+  - Detects toolkit version (v1.0, v2.0, v2.3)
+  - Provides actionable remediation steps if issues found
+  - Generates detailed status report
 
 ### Agent Capabilities
 - **Healthcare Validator**:
@@ -57,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Domain Configurations
 - **gpnet3**: Configured as healthcare domain with HIPAA compliance automation
 - **goassist3**: Configured as general development domain with quality gates
+- **govertical**: Configured as revenue domain with SOX/GAAP compliance
 
 ### Documentation
 - `agents/chain-engine.md`: Comprehensive agent chaining documentation

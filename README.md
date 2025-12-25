@@ -71,7 +71,7 @@ GitHub Actions templates in `templates/.github/workflows/`:
 - Python CI (test, lint, security)
 - Node.js CI (test, lint, build)
 
-### Slash Commands (30+ commands installed automatically)
+### Slash Commands (33 commands installed automatically)
 
 **Core Workflow:**
 - `/project:continue` - Work on next feature
@@ -79,6 +79,7 @@ GitHub Actions templates in `templates/.github/workflows/`:
 - `/project:verify` - Test all features
 - `/project:handoff` - Save state for next session
 - `/help` - Search and find commands
+- `/toolkit:check` - Verify complete toolkit installation
 
 **PRD & Requirements:**
 - `/prd-check` - Verify alignment with PRD
