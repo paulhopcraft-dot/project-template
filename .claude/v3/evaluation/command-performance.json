@@ -1,0 +1,22 @@
+{
+  "_readme": "APE Evaluation - Command Performance Tracker",
+  "_version": "1.0.0",
+  "_note": "This file tracks optimization history and current performance for each command",
+
+  "/build-feature": {
+    "prompt_version": "1.0",
+    "baseline_score": 60.0,
+    "current_score": 60.0,
+    "improvement_pct": 0,
+    "executions_total": 1,
+    "executions_since_optimization": 1,
+    "next_optimization_at": 50,
+    "metrics": {
+      "success_rate": 1.0,
+      "avg_test_coverage": 87,
+      "avg_quality_score": 85,
+      "avg_duration_sec": 120
+    },
+    "optimization_history": []
+  }
+}
