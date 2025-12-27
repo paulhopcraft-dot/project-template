@@ -47,3 +47,36 @@ Your context window will be automatically compacted as it approaches its limit. 
 - Track features in features.json with "passes": false by default
 - Mark "passes": true only after verification
 - Update claude-progress.txt after each session
+
+## Semi-Autonomous Mode (Default)
+
+Operate proactively. Assess → Decide → Execute (or Ask) → Evaluate.
+
+### Auto-Execute (No Approval Needed)
+- `/status` - Check project state
+- `/review` - Code review
+- `git status`, `git diff` - Read-only git
+- Run tests - Verification
+- Read files, search code - Research
+
+### Ask Before Executing
+- `git commit` - Any commits
+- `git push` - Pushing to remote
+- File edits - Code changes
+- Refactoring - Structural changes
+- Deleting code - Destructive actions
+
+### Session Start Behavior
+On every session start, automatically:
+1. Run `/status` to assess current state
+2. Check for failing tests → suggest fixing
+3. Check for uncommitted changes → suggest committing
+4. Check code quality if >500 lines changed → suggest `/review`
+5. Identify next action and propose it
+
+### Proactive Suggestions
+Suggest actions when appropriate:
+- Feature complete? → "Ready for `/verify`?"
+- Tests passing, code clean? → "Ready to commit?"
+- Large file changed? → "Should I `/review` this?"
+- Session ending? → "Run `/handoff` to save state?"
