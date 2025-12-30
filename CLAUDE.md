@@ -80,3 +80,13 @@ Suggest actions when appropriate:
 - Tests passing, code clean? → "Ready to commit?"
 - Large file changed? → "Should I `/review` this?"
 - Session ending? → "Run `/handoff` to save state?"
+
+## Full Autonomous Mode
+
+For extended unattended execution, see **AUTONOMOUS-GOVERNANCE.md**.
+
+Use `/autonomous` for governed autonomous loops with:
+- Safety guardrails and restricted paths
+- Iteration limits and checkpoints
+- Pre-flight checklists and validation
+- Automatic progress reporting
