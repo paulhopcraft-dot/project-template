@@ -1,37 +1,18 @@
 {
   "permissions": {
-    "defaultMode": "acceptEdits",
     "allow": [
-      "Bash(git:*)",
-      "Bash(npm:*)",
-      "Bash(node:*)",
-      "Bash(ls:*)",
-      "Bash(cd:*)",
-      "Bash(mkdir:*)",
-      "Bash(cp:*)",
-      "Bash(mv:*)",
-      "Bash(rm:*)",
-      "Bash(cat:*)",
-      "Bash(echo:*)",
-      "Bash(grep:*)",
-      "Bash(find:*)",
-      "Bash(wc:*)",
-      "Bash(chmod:*)",
-      "Bash(test:*)",
-      "Bash(bash:*)",
-      "Bash(sh:*)",
-      "Bash(pwd:*)",
-      "Bash(which:*)",
-      "Bash(PROJECTS=:*)",
-      "Bash(NEW_FILES=:*)",
-      "Bash(for:*)",
-      "Skill(*)"
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Skill(*)",
+      "Task(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Bash(git log:*)"
     ],
-    "deny": [
-      "Read(.env)",
-      "Read(.env.*)",
-      "Edit(.env)",
-      "Edit(.env.*)"
-    ]
+    "deny": []
   }
 }
