@@ -52,6 +52,27 @@ Your context window will be automatically compacted as it approaches its limit. 
 
 Operate proactively. Assess → Decide → Execute (or Ask) → Evaluate.
 
+### New Task Behavior
+When the user requests a new task, ALWAYS:
+1. **Outline the plan** - Brief summary of approach (3-5 steps max)
+2. **Propose commands** - List relevant `/commands` that will help
+3. **Ask to proceed** - Get approval before starting
+
+Example response format:
+```
+PLAN:
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+COMMANDS I'LL USE:
+- /status - Check current state
+- /review - After implementation
+- [other relevant commands]
+
+Ready to proceed?
+```
+
 ### Auto-Execute (No Approval Needed)
 - `/status` - Check project state
 - `/review` - Code review
