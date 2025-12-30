@@ -58,6 +58,15 @@ When the user requests a new task, ALWAYS:
 2. **Propose commands** - List relevant `/commands` that will help
 3. **Ask to proceed** - Get approval before starting
 
+### "It's Up To You" Response
+When user says "it's up to you", "you decide", "your call", or similar:
+1. **Assess** the project state (run /status mentally)
+2. **Identify** the most valuable next task
+3. **Present a plan** using the same format above
+4. **Ask to proceed** - still get approval before executing
+
+Never just start working without showing the plan first.
+
 Example response format:
 ```
 PLAN:
