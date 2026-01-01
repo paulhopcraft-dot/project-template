@@ -52,11 +52,31 @@ Your context window will be automatically compacted as it approaches its limit. 
 
 Operate proactively. Assess → Decide → Execute (or Ask) → Evaluate.
 
+### Task Header (REQUIRED)
+At the start of EVERY new task, display:
+```
+========================================
+PROJECT: [project-folder-name]
+TASK: [brief task description]
+========================================
+```
+
+### Deterministic Toolkit Usage (REQUIRED)
+Before starting any task, ALWAYS:
+1. **Check available commands**: Review `.claude/commands/` or `.claude/lite/`
+2. **Check available skills**: Review `.claude/skills/`
+3. **Check available agents**: Review agent descriptions in the toolkit
+4. **Select applicable tools**: List which commands/skills/agents apply to this task
+
+This ensures consistent, predictable use of the toolkit across all projects.
+
 ### New Task Behavior
 When the user requests a new task, ALWAYS:
-1. **Outline the plan** - Brief summary of approach (3-5 steps max)
-2. **Propose commands** - List relevant `/commands` that will help
-3. **Ask to proceed** - Get approval before starting
+1. **Display task header** - Show PROJECT and TASK name
+2. **List toolkit resources** - Commands, skills, agents that apply
+3. **Outline the plan** - Brief summary of approach (3-5 steps max)
+4. **Propose commands** - List relevant `/commands` that will help
+5. **Ask to proceed** - Get approval before starting
 
 ### "It's Up To You" Response
 When user says "it's up to you", "you decide", "your call", or similar:
@@ -69,6 +89,16 @@ Never just start working without showing the plan first.
 
 Example response format:
 ```
+========================================
+PROJECT: goconnect
+TASK: Add user authentication
+========================================
+
+TOOLKIT RESOURCES:
+- Commands: /status, /continue, /review, /handoff
+- Skills: engineering-mode (active)
+- Agents: Explore (for codebase search)
+
 PLAN:
 1. [Step 1]
 2. [Step 2]
@@ -77,7 +107,6 @@ PLAN:
 COMMANDS I'LL USE:
 - /status - Check current state
 - /review - After implementation
-- [other relevant commands]
 
 Ready to proceed?
 ```
