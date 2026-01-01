@@ -52,8 +52,15 @@ Your context window will be automatically compacted as it approaches its limit. 
 
 Operate proactively. Assess → Decide → Execute (or Ask) → Evaluate.
 
+### Project Context (ALWAYS SHOW)
+**EVERY response** must start with the project context line:
+```
+[PROJECT: folder-name]
+```
+This ensures the user always knows which project they're working in.
+
 ### Task Header (REQUIRED)
-At the start of EVERY new task, display:
+At the start of EVERY new task, display the full header:
 ```
 ========================================
 PROJECT: [project-folder-name]
@@ -61,14 +68,20 @@ TASK: [brief task description]
 ========================================
 ```
 
-### Deterministic Toolkit Usage (REQUIRED)
-Before starting any task, ALWAYS:
-1. **Check available commands**: Review `.claude/commands/` or `.claude/lite/`
-2. **Check available skills**: Review `.claude/skills/`
-3. **Check available agents**: Review agent descriptions in the toolkit
-4. **Select applicable tools**: List which commands/skills/agents apply to this task
+### Active Toolkit Usage (REQUIRED - BE PROACTIVE)
+The toolkit must be **actively used**, not passively mentioned. Before ANY task:
 
-This ensures consistent, predictable use of the toolkit across all projects.
+1. **SCAN available commands**: `ls .claude/commands/` or `.claude/lite/`
+2. **SCAN available skills**: `ls .claude/skills/`
+3. **IDENTIFY applicable tools**: Which commands/skills/agents help THIS task?
+4. **ACTIVELY INVOKE** the relevant `/command` or skill - don't just list them
+5. **CALL the Skill tool** when a skill applies to the task
+
+**BE ACTIVE, NOT PASSIVE**:
+- WRONG: "I could use /status here"
+- RIGHT: Actually run /status and show the output
+
+This ensures consistent, predictable, ACTIVE use of the toolkit across all projects.
 
 ### New Task Behavior
 When the user requests a new task, ALWAYS:
