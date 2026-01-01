@@ -143,6 +143,109 @@ Run `/decide` automatically when:
 - Irreversible or hard-to-change choices
 </trigger>
 
+<trigger name="Auto-Anticipate">
+Run `/anticipate` automatically when:
+- External API integrations
+- Database schema changes
+- Security-sensitive code (auth, encryption, tokens)
+- Real-time/streaming features
+- Payment/financial logic
+</trigger>
+
+<trigger name="Auto-Branch">
+SUGGEST `/branch` when:
+- Task touches >5 files
+- Task estimated >2 hours
+- Risky/experimental changes
+</trigger>
+
+<trigger name="Auto-Reflect">
+Run `/reflect` automatically when:
+- Feature marked complete
+- After major refactoring
+- Before /handoff
+</trigger>
+
+<trigger name="Auto-Validate">
+Run `/validate` automatically when:
+- Feature implementation finished
+- Before marking "passes": true
+- After fixing failing tests
+</trigger>
+
+<trigger name="Auto-Verify">
+Run `/verify` automatically when:
+- Multiple features marked complete in session
+- Before major release/deploy
+</trigger>
+
+<trigger name="Auto-Resolve">
+Run `/resolve` automatically when:
+- Git merge conflicts detected
+- Rebase conflicts encountered
+</trigger>
+
+<trigger name="Auto-Recover">
+Run `/recover` automatically when:
+- Errors or corruption detected
+- features.json invalid
+- Build/test failures after clean state
+</trigger>
+
+<trigger name="Auto-Index">
+Run `/index` automatically when:
+- Session starts (if PROJECT_INDEX.json stale >24h)
+- Major structural changes (new directories, >10 files changed)
+</trigger>
+
+<trigger name="Auto-Remember">
+SUGGEST `/remember` when:
+- User shares important context about project
+- Learning codebase conventions
+- Discovering non-obvious patterns
+</trigger>
+
+<trigger name="Auto-Recall">
+Run `/recall` automatically when:
+- Session starts
+- Entering unfamiliar area of codebase
+</trigger>
+
+<trigger name="Auto-Think">
+Run `/think` automatically when:
+- Complex task with multiple approaches
+- Task requires >30 min estimated time
+- Ambiguous requirements
+</trigger>
+
+<trigger name="Auto-Perspectives">
+Run `/perspectives` automatically when:
+- Controversial or impactful decisions
+- User-facing changes
+- Breaking changes to APIs
+</trigger>
+
+<trigger name="Auto-Expert">
+SUGGEST `/expert` when:
+- Domain-specific work (legal, medical, financial)
+- Specialized technology (ML, crypto, real-time)
+- Compliance/regulatory requirements
+</trigger>
+
+<trigger name="Auto-TDD">
+Run `/tdd` automatically when:
+- Implementing new functions/classes
+- Bug fixes (write failing test first)
+- User explicitly requests tests
+</trigger>
+
+<trigger name="Auto-PRD-Check">
+Run `/prd-check` automatically when:
+- PRD exists in project
+- Modifying PRD-tracked features
+- Before implementing new features
+</trigger>
+
 When a trigger fires, display:
 ```
 AUTO-{TRIGGER_NAME}: {reason}
