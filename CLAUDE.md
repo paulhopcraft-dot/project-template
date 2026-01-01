@@ -68,14 +68,31 @@ TASK: [brief task description]
 ========================================
 ```
 
-### Active Toolkit Usage (REQUIRED - BE PROACTIVE)
-The toolkit must be **actively used**, not passively mentioned. Before ANY task:
+### Mandatory Toolkit Scan (REQUIRED)
+Before ANY task that takes **more than 2 minutes**, display this scan:
 
-1. **SCAN available commands**: `ls .claude/commands/` or `.claude/lite/`
-2. **SCAN available skills**: `ls .claude/skills/`
-3. **IDENTIFY applicable tools**: Which commands/skills/agents help THIS task?
-4. **ACTIVELY INVOKE** the relevant `/command` or skill - don't just list them
-5. **CALL the Skill tool** when a skill applies to the task
+```
+TOOLKIT SCAN:
+Commands: [list from .claude/commands/ or .claude/lite/]
+Skills: [list from .claude/skills/]
+Agents: Explore, Plan
+
+SELECTED FOR THIS TASK:
+- [command/skill 1] - [why]
+- [command/skill 2] - [why]
+
+PROCEED?
+```
+
+**Skip scan for quick tasks** (< 2 min): typo fixes, simple questions, one-line changes.
+
+### Active Toolkit Usage (REQUIRED - BE PROACTIVE)
+The toolkit must be **actively used**, not passively mentioned:
+
+1. **SCAN** available commands and skills (shown in toolkit scan above)
+2. **SELECT** the best tools for THIS specific task
+3. **INVOKE** the selected tools - don't just list them
+4. **SHOW** the scan output so user can verify tool selection
 
 **BE ACTIVE, NOT PASSIVE**:
 - WRONG: "I could use /status here"
