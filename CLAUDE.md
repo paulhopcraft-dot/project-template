@@ -186,8 +186,36 @@ On EVERY session start, automatically:
 3. Check for uncommitted changes → suggest committing
 4. Check code quality if >500 lines changed → suggest `/review`
 5. Run Auto-Dependency-Check
-6. Propose next action
+6. Propose next action with mode recommendation
 </session_start>
+
+<mandatory_behavior id="mode_recommendation" priority="high">
+## Rule 9: Recommend Continue vs Autonomous
+
+After `/status` or when assessing pending work, ALWAYS recommend a mode:
+
+**Recommend `/continue` when:**
+- 1-2 small tasks remaining
+- Tasks need user decisions or clarification
+- Working on sensitive code (auth, payments, database)
+- Unfamiliar codebase or new feature area
+
+**Recommend `/autonomous` when:**
+- 3+ similar tasks (batch work)
+- Tasks are well-defined with clear acceptance criteria
+- Routine work (tests, refactoring, formatting)
+- User has approved the overall plan
+
+**Display format:**
+```
+PENDING: {count} tasks | SIZE: {Small/Medium/Large}
+RECOMMENDED: [C]ontinue or [A]utonomous - {reason}
+
+PROCEED? (C/A):
+```
+
+User types C or A to proceed. Quick and simple.
+</mandatory_behavior>
 
 ---
 

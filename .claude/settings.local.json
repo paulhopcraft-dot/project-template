@@ -2,25 +2,15 @@
   "permissions": {
     "defaultMode": "bypassPermissions",
     "allow": [
-      "Bash(*)",
-      "Read(*)",
-      "Write(*)",
-      "Edit(*)",
-      "Glob(*)",
-      "Grep(*)",
-      "Skill(*)",
-      "Task(*)",
-      "WebFetch(*)",
-      "WebSearch(*)",
-      "Bash(git log:*)",
-      "Bash(powershell -Command \"& {cd ''c:\\\\Dev\\\\claude-code-toolkit\\\\.claude\\\\lite''; .\\\\install.ps1}\")",
-      "Bash(cat:*)",
-      "Bash(for dir in /c/Dev/gpnet3 /c/Dev/goassist3 /c/Dev/govertical /c/Dev/goconnect /c/Dev/GoAgent)",
-      "Bash(done)",
-      "Bash(powershell -File:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Skill",
+      "Task",
+      "Mcp"
     ],
     "deny": []
   }
