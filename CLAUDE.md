@@ -134,6 +134,15 @@ Check for outdated/vulnerable packages when:
 - package.json modified
 </trigger>
 
+<trigger name="Auto-Decide">
+Run `/decide` automatically when:
+- Choosing between libraries/frameworks
+- Architecture decisions (database, API design, state management)
+- Trade-offs with significant impact (performance vs maintainability)
+- Any "should we use X or Y" moment
+- Irreversible or hard-to-change choices
+</trigger>
+
 When a trigger fires, display:
 ```
 AUTO-{TRIGGER_NAME}: {reason}
