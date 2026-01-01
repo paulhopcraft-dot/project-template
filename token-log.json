@@ -1,0 +1,17 @@
+{
+  "sessions": [],
+  "totals": {
+    "total_tokens_estimated": 0,
+    "total_cost_estimated_usd": 0,
+    "sessions_count": 0
+  },
+  "rates": {
+    "opus_input_per_mtok": 15,
+    "opus_output_per_mtok": 75,
+    "sonnet_input_per_mtok": 3,
+    "sonnet_output_per_mtok": 15,
+    "haiku_input_per_mtok": 0.25,
+    "haiku_output_per_mtok": 1.25
+  },
+  "notes": "Token counts are estimates based on message length. Actual billing may differ."
+}

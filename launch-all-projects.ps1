@@ -10,8 +10,8 @@ foreach ($proj in $projects) {
 
     if (Test-Path $path) {
         Write-Host "  Starting $proj..." -ForegroundColor Green
-        # --title sets the tab/window title to the project name
-        Start-Process wt -ArgumentList "--title `"$proj`" -d `"$path`" cmd /k claude --continue"
+        # Open new window with title - use -w 0 for new window, --title for tab name
+        Start-Process wt -ArgumentList "-w new --title `"$proj`" -d `"$path`" -- cmd /k claude --continue"
         Start-Sleep -Milliseconds 800
     } else {
         Write-Host "  Skipping $proj - path not found" -ForegroundColor Yellow
