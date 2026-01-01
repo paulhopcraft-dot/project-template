@@ -155,22 +155,50 @@ Ready to proceed?
 - Refactoring - Structural changes
 - Deleting code - Destructive actions
 
-### Auto-Review Triggers (Run /review automatically)
-After completing a task, automatically run `/review` when ANY of these apply:
-- **100+ lines changed** in a single task
-- **Security-sensitive files touched**: auth, payments, API keys, encryption
-- **Database changes**: migrations, schema changes
-- **Core business logic modified**
-- **Before any git commit** (quick review)
+### Autonomous Triggers (Auto-run without asking)
 
-Format when triggered:
+**Auto-Review** - Run `/review` when:
+- 100+ lines changed
+- Security files touched (auth, payments, API keys)
+- Database/migration changes
+- Before git commit
+
+**Auto-Test** - Run tests when:
+- Function logic changed
+- New file created
+- Before git commit
+
+**Auto-Type Check** - Run `tsc --noEmit` when:
+- TypeScript files changed
+- Before git commit
+
+**Auto-Security Scan** - Run `/security-scan` when:
+- .env files touched
+- Dependencies added/changed
+- Auth/API code modified
+
+**Auto-Progress Update** - Update `claude-progress.txt` when:
+- Task completed
+- Before /handoff
+- Session idle > 5 min
+
+**Auto-Commit Checkpoint** - Suggest commit when:
+- 30+ min since last commit
+- 5+ files changed
+- Before switching tasks
+
+**Auto-Dependency Check** - Check packages when:
+- Session starts
+- package.json modified
+
+Format when any trigger fires:
 ```
-AUTO-REVIEW TRIGGERED: [reason]
-Running /review...
+AUTO-[TRIGGER]: [reason]
+Running [action]...
 
-[review output]
+[output]
 
-Fix issues before proceeding? (y/n)
+Continue? (y/n)
 ```
 
 ### Session Start Behavior
