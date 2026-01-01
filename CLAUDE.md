@@ -155,6 +155,24 @@ Ready to proceed?
 - Refactoring - Structural changes
 - Deleting code - Destructive actions
 
+### Auto-Review Triggers (Run /review automatically)
+After completing a task, automatically run `/review` when ANY of these apply:
+- **100+ lines changed** in a single task
+- **Security-sensitive files touched**: auth, payments, API keys, encryption
+- **Database changes**: migrations, schema changes
+- **Core business logic modified**
+- **Before any git commit** (quick review)
+
+Format when triggered:
+```
+AUTO-REVIEW TRIGGERED: [reason]
+Running /review...
+
+[review output]
+
+Fix issues before proceeding? (y/n)
+```
+
 ### Session Start Behavior
 On every session start, automatically:
 1. Run `/status` to assess current state
