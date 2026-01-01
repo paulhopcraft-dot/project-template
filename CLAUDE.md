@@ -84,9 +84,24 @@ Actually invoke the Skill tool for skills
 <autonomous_triggers priority="high">
 ## Rule 5: Autonomous Triggers
 
-These triggers fire AUTOMATICALLY. You do not ask permission.
+These triggers fire AUTOMATICALLY in PRIORITY ORDER.
+When multiple triggers apply, run them in tier order (P1 first, then P2, etc).
 
-<trigger name="Auto-Review">
+**Priority Tiers:**
+- **P1 - Critical**: Safety, recovery, conflicts (must run first)
+- **P2 - Planning**: Think, decide, anticipate (before coding)
+- **P3 - Execution**: TDD, review, security (during coding)
+- **P4 - Validation**: Validate, verify, reflect (after coding)
+- **P5 - Housekeeping**: Index, remember, progress (background)
+
+**Model Selection:**
+- **opus**: Complex reasoning, architecture, high-stakes decisions
+- **sonnet**: Code generation, reviews, routine tasks
+- **haiku**: Quick lookups, status checks, simple operations
+
+When spawning sub-agents for triggers, use the specified model.
+
+<trigger name="Auto-Review" priority="P3" model="sonnet">
 Run `/review` when ANY of these are true:
 - 100+ lines changed in task
 - Security files touched (auth, payments, API keys, encryption)
@@ -94,47 +109,47 @@ Run `/review` when ANY of these are true:
 - Before git commit
 </trigger>
 
-<trigger name="Auto-Test">
+<trigger name="Auto-Test" priority="P3" model="haiku">
 Run project tests when ANY of these are true:
 - Function logic changed
 - New file created
 - Before git commit
 </trigger>
 
-<trigger name="Auto-Type-Check">
+<trigger name="Auto-Type-Check" priority="P3" model="haiku">
 Run `tsc --noEmit` when:
 - TypeScript files changed
 - Before git commit
 </trigger>
 
-<trigger name="Auto-Security-Scan">
+<trigger name="Auto-Security-Scan" priority="P1" model="sonnet">
 Run `/security-scan` when:
 - .env files touched
 - Dependencies added/changed (package.json)
 - Auth/API code modified
 </trigger>
 
-<trigger name="Auto-Progress-Update">
+<trigger name="Auto-Progress-Update" priority="P5" model="haiku">
 Update `claude-progress.txt` when:
 - Task completed
 - Before /handoff
 - Session idle > 5 minutes
 </trigger>
 
-<trigger name="Auto-Commit-Checkpoint">
+<trigger name="Auto-Commit-Checkpoint" priority="P5" model="haiku">
 SUGGEST commit (don't auto-commit) when:
 - 30+ minutes since last commit
 - 5+ files changed
 - Before switching tasks
 </trigger>
 
-<trigger name="Auto-Dependency-Check">
+<trigger name="Auto-Dependency-Check" priority="P1" model="sonnet">
 Check for outdated/vulnerable packages when:
 - Session starts
 - package.json modified
 </trigger>
 
-<trigger name="Auto-Decide">
+<trigger name="Auto-Decide" priority="P2" model="opus">
 Run `/decide` automatically when:
 - Choosing between libraries/frameworks
 - Architecture decisions (database, API design, state management)
@@ -143,7 +158,7 @@ Run `/decide` automatically when:
 - Irreversible or hard-to-change choices
 </trigger>
 
-<trigger name="Auto-Anticipate">
+<trigger name="Auto-Anticipate" priority="P2" model="opus">
 Run `/anticipate` automatically when:
 - External API integrations
 - Database schema changes
@@ -152,94 +167,94 @@ Run `/anticipate` automatically when:
 - Payment/financial logic
 </trigger>
 
-<trigger name="Auto-Branch">
+<trigger name="Auto-Branch" priority="P3" model="haiku">
 SUGGEST `/branch` when:
 - Task touches >5 files
 - Task estimated >2 hours
 - Risky/experimental changes
 </trigger>
 
-<trigger name="Auto-Reflect">
+<trigger name="Auto-Reflect" priority="P4" model="sonnet">
 Run `/reflect` automatically when:
 - Feature marked complete
 - After major refactoring
 - Before /handoff
 </trigger>
 
-<trigger name="Auto-Validate">
+<trigger name="Auto-Validate" priority="P4" model="sonnet">
 Run `/validate` automatically when:
 - Feature implementation finished
 - Before marking "passes": true
 - After fixing failing tests
 </trigger>
 
-<trigger name="Auto-Verify">
+<trigger name="Auto-Verify" priority="P4" model="sonnet">
 Run `/verify` automatically when:
 - Multiple features marked complete in session
 - Before major release/deploy
 </trigger>
 
-<trigger name="Auto-Resolve">
+<trigger name="Auto-Resolve" priority="P1" model="sonnet">
 Run `/resolve` automatically when:
 - Git merge conflicts detected
 - Rebase conflicts encountered
 </trigger>
 
-<trigger name="Auto-Recover">
+<trigger name="Auto-Recover" priority="P1" model="sonnet">
 Run `/recover` automatically when:
 - Errors or corruption detected
 - features.json invalid
 - Build/test failures after clean state
 </trigger>
 
-<trigger name="Auto-Index">
+<trigger name="Auto-Index" priority="P5" model="haiku">
 Run `/index` automatically when:
 - Session starts (if PROJECT_INDEX.json stale >24h)
 - Major structural changes (new directories, >10 files changed)
 </trigger>
 
-<trigger name="Auto-Remember">
+<trigger name="Auto-Remember" priority="P5" model="haiku">
 SUGGEST `/remember` when:
 - User shares important context about project
 - Learning codebase conventions
 - Discovering non-obvious patterns
 </trigger>
 
-<trigger name="Auto-Recall">
+<trigger name="Auto-Recall" priority="P5" model="haiku">
 Run `/recall` automatically when:
 - Session starts
 - Entering unfamiliar area of codebase
 </trigger>
 
-<trigger name="Auto-Think">
+<trigger name="Auto-Think" priority="P2" model="opus">
 Run `/think` automatically when:
 - Complex task with multiple approaches
 - Task requires >30 min estimated time
 - Ambiguous requirements
 </trigger>
 
-<trigger name="Auto-Perspectives">
+<trigger name="Auto-Perspectives" priority="P2" model="opus">
 Run `/perspectives` automatically when:
 - Controversial or impactful decisions
 - User-facing changes
 - Breaking changes to APIs
 </trigger>
 
-<trigger name="Auto-Expert">
+<trigger name="Auto-Expert" priority="P2" model="opus">
 SUGGEST `/expert` when:
 - Domain-specific work (legal, medical, financial)
 - Specialized technology (ML, crypto, real-time)
 - Compliance/regulatory requirements
 </trigger>
 
-<trigger name="Auto-TDD">
+<trigger name="Auto-TDD" priority="P3" model="sonnet">
 Run `/tdd` automatically when:
 - Implementing new functions/classes
 - Bug fixes (write failing test first)
 - User explicitly requests tests
 </trigger>
 
-<trigger name="Auto-PRD-Check">
+<trigger name="Auto-PRD-Check" priority="P2" model="sonnet">
 Run `/prd-check` automatically when:
 - PRD exists in project
 - Modifying PRD-tracked features
