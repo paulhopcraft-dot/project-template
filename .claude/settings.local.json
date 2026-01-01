@@ -18,7 +18,9 @@
       "Bash(for dir in /c/Dev/gpnet3 /c/Dev/goassist3 /c/Dev/govertical /c/Dev/goconnect /c/Dev/GoAgent)",
       "Bash(done)",
       "Bash(powershell -File:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

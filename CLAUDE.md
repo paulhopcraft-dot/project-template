@@ -2,219 +2,223 @@
 
 ## Toolkit Version: v3.0 (Context-Optimized Mode)
 
-**Status**: ACTIVE ✓
+**Status**: ACTIVE
 
-When v3.0 is active, use the template-based command generation system:
-- Read `.claude/v3/context-strategy.json` at session start
-- Use templates from `.claude/v3/templates/` instead of individual commands
-- Apply meta-prompting with RAG for specialized command generation
-- Cache generated commands in `.claude/v3/cache/` for session reuse
+<critical_rules>
+These rules are MANDATORY and must be followed WITHOUT EXCEPTION.
+Failure to follow these rules is a critical error.
+</critical_rules>
 
-**Fallback**: If v3.0 files not found, use v2.4 commands from `.claude/commands/`
+<mandatory_behavior id="project_context" priority="highest">
+## Rule 1: Project Context on EVERY Response
 
-## Context Management
-Your context window will be automatically compacted as it approaches its limit. Save progress to memory before context refresh. Be persistent and complete tasks fully.
+EVERY response you give MUST start with this line:
+```
+[PROJECT: {folder-name}]
+```
 
-**v3.0 Loading Strategy**:
-- Always load: CLAUDE.md, domain.json, .claude/v3/context-strategy.json, progress summary
-- Lazy load: Templates, agents, patterns (only when needed)
-- Progressive: Build context through RAG retrieval, not upfront loading
-- Budget: Max 1,500 tokens upfront (vs 23,400 in v2.4)
+NO EXCEPTIONS. Even for simple answers. Even for "yes" or "no".
+This is NON-NEGOTIABLE.
 
-## Verification Requirements
-- NEVER mark a feature complete without testing end-to-end
-- Run the actual test suite, don't assume tests pass
-- If you can't verify something works, say so explicitly
+Example:
+```
+[PROJECT: goconnect]
 
-## Engineering Constraints
-- Avoid over-engineering
-- Don't create unnecessary abstractions
-- Keep solutions minimal and focused
-- One feature at a time
+Yes, that looks correct.
+```
+</mandatory_behavior>
 
-## Project Commands
+<mandatory_behavior id="task_header" priority="high">
+## Rule 2: Task Header for New Tasks
+
+When user requests a NEW task (not follow-up), display:
+```
+========================================
+PROJECT: {folder-name}
+TASK: {brief description}
+========================================
+```
+
+This comes AFTER the [PROJECT: name] line.
+</mandatory_behavior>
+
+<mandatory_behavior id="toolkit_scan" priority="high">
+## Rule 3: Toolkit Scan Before Tasks > 2 Minutes
+
+Before ANY task estimated to take more than 2 minutes, you MUST:
+
+1. SCAN available commands: `ls .claude/commands/` or `.claude/lite/`
+2. SCAN available skills: `ls .claude/skills/`
+3. DISPLAY this output:
+
+```
+TOOLKIT SCAN:
+Commands: {list all found}
+Skills: {list all found}
+Agents: Explore, Plan
+
+SELECTED FOR THIS TASK:
+- {tool 1} - {why selected}
+- {tool 2} - {why selected}
+
+PROCEED?
+```
+
+SKIP scan ONLY for: typo fixes, yes/no questions, one-line changes.
+</mandatory_behavior>
+
+<mandatory_behavior id="active_invocation" priority="high">
+## Rule 4: INVOKE Tools, Don't Just Mention Them
+
+You MUST actually CALL the tools you select.
+
+WRONG (passive):
+"I could use /status here"
+"The /review command would be helpful"
+
+CORRECT (active):
+Actually run /status and show output
+Actually invoke the Skill tool for skills
+</mandatory_behavior>
+
+<autonomous_triggers priority="high">
+## Rule 5: Autonomous Triggers
+
+These triggers fire AUTOMATICALLY. You do not ask permission.
+
+<trigger name="Auto-Review">
+Run `/review` when ANY of these are true:
+- 100+ lines changed in task
+- Security files touched (auth, payments, API keys, encryption)
+- Database/migration changes
+- Before git commit
+</trigger>
+
+<trigger name="Auto-Test">
+Run project tests when ANY of these are true:
+- Function logic changed
+- New file created
+- Before git commit
+</trigger>
+
+<trigger name="Auto-Type-Check">
+Run `tsc --noEmit` when:
+- TypeScript files changed
+- Before git commit
+</trigger>
+
+<trigger name="Auto-Security-Scan">
+Run `/security-scan` when:
+- .env files touched
+- Dependencies added/changed (package.json)
+- Auth/API code modified
+</trigger>
+
+<trigger name="Auto-Progress-Update">
+Update `claude-progress.txt` when:
+- Task completed
+- Before /handoff
+- Session idle > 5 minutes
+</trigger>
+
+<trigger name="Auto-Commit-Checkpoint">
+SUGGEST commit (don't auto-commit) when:
+- 30+ minutes since last commit
+- 5+ files changed
+- Before switching tasks
+</trigger>
+
+<trigger name="Auto-Dependency-Check">
+Check for outdated/vulnerable packages when:
+- Session starts
+- package.json modified
+</trigger>
+
+When a trigger fires, display:
+```
+AUTO-{TRIGGER_NAME}: {reason}
+Running {action}...
+
+{output}
+
+Continue? (y/n)
+```
+</autonomous_triggers>
+
+<mandatory_behavior id="new_task_flow" priority="high">
+## Rule 6: New Task Flow
+
+When user requests a new task, follow this EXACT sequence:
+
+1. Show [PROJECT: name] (Rule 1)
+2. Show task header (Rule 2)
+3. Show toolkit scan (Rule 3)
+4. Show plan (3-5 steps)
+5. Ask "PROCEED?" and wait for approval
+
+Do NOT skip steps. Do NOT start work before approval.
+</mandatory_behavior>
+
+<mandatory_behavior id="ask_before_destructive" priority="critical">
+## Rule 7: Ask Before Destructive Actions
+
+ALWAYS ask before:
+- git commit
+- git push
+- File edits/writes
+- Refactoring
+- Deleting code
+
+NEVER ask for (auto-execute):
+- /status
+- /review
+- git status, git diff
+- Running tests
+- Reading files
+</mandatory_behavior>
+
+<session_start priority="high">
+## Rule 8: Session Start Behavior
+
+On EVERY session start, automatically:
+1. Run `/status` to assess current state
+2. Check for failing tests → suggest fixing
+3. Check for uncommitted changes → suggest committing
+4. Check code quality if >500 lines changed → suggest `/review`
+5. Run Auto-Dependency-Check
+6. Propose next action
+</session_start>
+
+---
+
+## Configuration (Non-enforced)
+
+### Project Commands
 - Test: echo 'Add your test command'
 - Lint: echo 'Add your lint command'
 - Build: echo 'Add your build command'
 - Dev: echo 'Add your dev command'
 
-## Git Workflow
+### Git Workflow
 - Commit after each feature passes verification
 - Use conventional commits: feat/fix/docs/refactor
 - Push after significant milestones
 
-## Feature Tracking
+### Feature Tracking
 - Track features in features.json with "passes": false by default
 - Mark "passes": true only after verification
 - Update claude-progress.txt after each session
 
-## Semi-Autonomous Mode (Default)
+### Engineering Constraints
+- Avoid over-engineering
+- Don't create unnecessary abstractions
+- Keep solutions minimal and focused
+- One feature at a time
 
-Operate proactively. Assess → Decide → Execute (or Ask) → Evaluate.
-
-### Project Context (ALWAYS SHOW)
-**EVERY response** must start with the project context line:
-```
-[PROJECT: folder-name]
-```
-This ensures the user always knows which project they're working in.
-
-### Task Header (REQUIRED)
-At the start of EVERY new task, display the full header:
-```
-========================================
-PROJECT: [project-folder-name]
-TASK: [brief task description]
-========================================
-```
-
-### Mandatory Toolkit Scan (REQUIRED)
-Before ANY task that takes **more than 2 minutes**, display this scan:
-
-```
-TOOLKIT SCAN:
-Commands: [list from .claude/commands/ or .claude/lite/]
-Skills: [list from .claude/skills/]
-Agents: Explore, Plan
-
-SELECTED FOR THIS TASK:
-- [command/skill 1] - [why]
-- [command/skill 2] - [why]
-
-PROCEED?
-```
-
-**Skip scan for quick tasks** (< 2 min): typo fixes, simple questions, one-line changes.
-
-### Active Toolkit Usage (REQUIRED - BE PROACTIVE)
-The toolkit must be **actively used**, not passively mentioned:
-
-1. **SCAN** available commands and skills (shown in toolkit scan above)
-2. **SELECT** the best tools for THIS specific task
-3. **INVOKE** the selected tools - don't just list them
-4. **SHOW** the scan output so user can verify tool selection
-
-**BE ACTIVE, NOT PASSIVE**:
-- WRONG: "I could use /status here"
-- RIGHT: Actually run /status and show the output
-
-This ensures consistent, predictable, ACTIVE use of the toolkit across all projects.
-
-### New Task Behavior
-When the user requests a new task, ALWAYS:
-1. **Display task header** - Show PROJECT and TASK name
-2. **List toolkit resources** - Commands, skills, agents that apply
-3. **Outline the plan** - Brief summary of approach (3-5 steps max)
-4. **Propose commands** - List relevant `/commands` that will help
-5. **Ask to proceed** - Get approval before starting
-
-### "It's Up To You" Response
-When user says "it's up to you", "you decide", "your call", or similar:
-1. **Assess** the project state (run /status mentally)
-2. **Identify** the most valuable next task
-3. **Present a plan** using the same format above
-4. **Ask to proceed** - still get approval before executing
-
-Never just start working without showing the plan first.
-
-Example response format:
-```
-========================================
-PROJECT: goconnect
-TASK: Add user authentication
-========================================
-
-TOOLKIT RESOURCES:
-- Commands: /status, /continue, /review, /handoff
-- Skills: engineering-mode (active)
-- Agents: Explore (for codebase search)
-
-PLAN:
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-COMMANDS I'LL USE:
-- /status - Check current state
-- /review - After implementation
-
-Ready to proceed?
-```
-
-### Auto-Execute (No Approval Needed)
-- `/status` - Check project state
-- `/review` - Code review
-- `git status`, `git diff` - Read-only git
-- Run tests - Verification
-- Read files, search code - Research
-
-### Ask Before Executing
-- `git commit` - Any commits
-- `git push` - Pushing to remote
-- File edits - Code changes
-- Refactoring - Structural changes
-- Deleting code - Destructive actions
-
-### Autonomous Triggers (Auto-run without asking)
-
-**Auto-Review** - Run `/review` when:
-- 100+ lines changed
-- Security files touched (auth, payments, API keys)
-- Database/migration changes
-- Before git commit
-
-**Auto-Test** - Run tests when:
-- Function logic changed
-- New file created
-- Before git commit
-
-**Auto-Type Check** - Run `tsc --noEmit` when:
-- TypeScript files changed
-- Before git commit
-
-**Auto-Security Scan** - Run `/security-scan` when:
-- .env files touched
-- Dependencies added/changed
-- Auth/API code modified
-
-**Auto-Progress Update** - Update `claude-progress.txt` when:
-- Task completed
-- Before /handoff
-- Session idle > 5 min
-
-**Auto-Commit Checkpoint** - Suggest commit when:
-- 30+ min since last commit
-- 5+ files changed
-- Before switching tasks
-
-**Auto-Dependency Check** - Check packages when:
-- Session starts
-- package.json modified
-
-Format when any trigger fires:
-```
-AUTO-[TRIGGER]: [reason]
-Running [action]...
-
-[output]
-
-Continue? (y/n)
-```
-
-### Session Start Behavior
-On every session start, automatically:
-1. Run `/status` to assess current state
-2. Check for failing tests → suggest fixing
-3. Check for uncommitted changes → suggest committing
-4. Check code quality if >500 lines changed → suggest `/review`
-5. Identify next action and propose it
-
-### Proactive Suggestions
-Suggest actions when appropriate:
-- Feature complete? → "Ready for `/verify`?"
-- Tests passing, code clean? → "Ready to commit?"
-- Large file changed? → "Should I `/review` this?"
-- Session ending? → "Run `/handoff` to save state?"
+### Verification Requirements
+- NEVER mark a feature complete without testing end-to-end
+- Run the actual test suite, don't assume tests pass
+- If you can't verify something works, say so explicitly
 
 ## Full Autonomous Mode
 
