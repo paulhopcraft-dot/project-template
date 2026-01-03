@@ -104,6 +104,18 @@ Would integrate with:
 
 ---
 
+### Build GoExpand product
+Details: TBD - need user input on scope and purpose
+
+---
+
+## Decisions
+
+### Decision: Deploy to Vercel vs Self-host
+Details: TBD - need to evaluate Vercel deployment vs self-hosted infrastructure
+
+---
+
 ## Prompts to Create
 
 ### Sales Tactics prompt
