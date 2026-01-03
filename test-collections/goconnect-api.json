@@ -1,0 +1,245 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "goconnect API Tests",
+  "dateExported": "2026-01-03",
+  "version": "1.0",
+  "folders": [
+    {
+      "name": "Health",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 10000
+    },
+    {
+      "name": "Auth",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 20000
+    },
+    {
+      "name": "Tenants",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 30000
+    },
+    {
+      "name": "Leads",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 40000
+    },
+    {
+      "name": "Calendar",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 50000
+    }
+  ],
+  "requests": [
+    {
+      "name": "Health Check",
+      "url": "{{baseUrl}}/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "containerId": "Health",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 20000,
+      "containerId": "Auth",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{testPassword}}\"\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "authToken",
+          "action": "setto",
+          "value": "json.accessToken"
+        }
+      ]
+    },
+    {
+      "name": "Get Current User",
+      "url": "{{baseUrl}}/auth/me",
+      "method": "GET",
+      "sortNum": 20001,
+      "containerId": "Auth",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "List Tenants",
+      "url": "{{baseUrl}}/tenants",
+      "method": "GET",
+      "sortNum": 30000,
+      "containerId": "Tenants",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "List Leads",
+      "url": "{{baseUrl}}/leads",
+      "method": "GET",
+      "sortNum": 40000,
+      "containerId": "Leads",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        },
+        {
+          "name": "x-tenant-id",
+          "value": "{{tenantId}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Create Lead",
+      "url": "{{baseUrl}}/leads",
+      "method": "POST",
+      "sortNum": 40001,
+      "containerId": "Leads",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        },
+        {
+          "name": "x-tenant-id",
+          "value": "{{tenantId}}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Lead\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"555-0100\"\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "leadId",
+          "action": "setto",
+          "value": "json.id"
+        }
+      ]
+    },
+    {
+      "name": "Get Calendar Events",
+      "url": "{{baseUrl}}/calendar/events",
+      "method": "GET",
+      "sortNum": 50000,
+      "containerId": "Calendar",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "name": "Local",
+      "default": true,
+      "data": [
+        {
+          "name": "baseUrl",
+          "value": "http://localhost:3000"
+        },
+        {
+          "name": "testEmail",
+          "value": "admin@test.com"
+        },
+        {
+          "name": "testPassword",
+          "value": "test123"
+        },
+        {
+          "name": "authToken",
+          "value": ""
+        },
+        {
+          "name": "tenantId",
+          "value": "test-tenant"
+        },
+        {
+          "name": "leadId",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

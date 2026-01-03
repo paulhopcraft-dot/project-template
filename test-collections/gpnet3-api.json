@@ -1,0 +1,233 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "gpnet3 API Tests",
+  "dateExported": "2026-01-03",
+  "version": "1.0",
+  "folders": [
+    {
+      "name": "Health",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 10000
+    },
+    {
+      "name": "Database",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 20000
+    },
+    {
+      "name": "Records",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 30000
+    }
+  ],
+  "requests": [
+    {
+      "name": "Health Check",
+      "url": "{{baseUrl}}/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "containerId": "Health",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Database Health",
+      "url": "{{baseUrl}}/health/db",
+      "method": "GET",
+      "sortNum": 20000,
+      "containerId": "Database",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json.status",
+          "action": "equal",
+          "value": "connected"
+        }
+      ]
+    },
+    {
+      "name": "List All Records",
+      "url": "{{baseUrl}}/api/records",
+      "method": "GET",
+      "sortNum": 30000,
+      "containerId": "Records",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json",
+          "action": "istype",
+          "value": "array"
+        }
+      ]
+    },
+    {
+      "name": "Create Record",
+      "url": "{{baseUrl}}/api/records",
+      "method": "POST",
+      "sortNum": 30001,
+      "containerId": "Records",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Test Record\",\n  \"value\": 123\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "recordId",
+          "action": "setto",
+          "value": "json.id"
+        }
+      ]
+    },
+    {
+      "name": "Get Single Record",
+      "url": "{{baseUrl}}/api/records/{{recordId}}",
+      "method": "GET",
+      "sortNum": 30002,
+      "containerId": "Records",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json.id",
+          "action": "equal",
+          "value": "{{recordId}}"
+        }
+      ]
+    },
+    {
+      "name": "Update Record",
+      "url": "{{baseUrl}}/api/records/{{recordId}}",
+      "method": "PUT",
+      "sortNum": 30003,
+      "containerId": "Records",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Updated Record\",\n  \"value\": 456\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Delete Record",
+      "url": "{{baseUrl}}/api/records/{{recordId}}",
+      "method": "DELETE",
+      "sortNum": 30004,
+      "containerId": "Records",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "204"
+        }
+      ]
+    },
+    {
+      "name": "Get Deleted Record - Should 404",
+      "url": "{{baseUrl}}/api/records/{{recordId}}",
+      "method": "GET",
+      "sortNum": 30005,
+      "containerId": "Records",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "name": "Create Invalid Record - Should 400",
+      "url": "{{baseUrl}}/api/records",
+      "method": "POST",
+      "sortNum": 30006,
+      "containerId": "Records",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "name": "Local",
+      "default": true,
+      "data": [
+        {
+          "name": "baseUrl",
+          "value": "http://localhost:5000"
+        },
+        {
+          "name": "recordId",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

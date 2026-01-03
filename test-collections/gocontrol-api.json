@@ -1,0 +1,315 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "gocontrol API Tests",
+  "dateExported": "2026-01-03",
+  "version": "1.0",
+  "folders": [
+    {
+      "name": "Health",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 10000
+    },
+    {
+      "name": "Auth",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 20000
+    },
+    {
+      "name": "Tokens",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 30000
+    },
+    {
+      "name": "Admin",
+      "containerId": "",
+      "created": "2026-01-03",
+      "sortNum": 40000
+    }
+  ],
+  "requests": [
+    {
+      "name": "Health Check",
+      "url": "{{baseUrl}}/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "containerId": "Health",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json.status",
+          "action": "equal",
+          "value": "healthy"
+        }
+      ]
+    },
+    {
+      "name": "Ready Check",
+      "url": "{{baseUrl}}/ready",
+      "method": "GET",
+      "sortNum": 10001,
+      "containerId": "Health",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Login - Valid Credentials",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 20000,
+      "containerId": "Auth",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{testPassword}}\"\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json.token",
+          "action": "istype",
+          "value": "string"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "authToken",
+          "action": "setto",
+          "value": "json.token"
+        }
+      ]
+    },
+    {
+      "name": "Login - Invalid Credentials",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 20001,
+      "containerId": "Auth",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"wrong@test.com\",\n  \"password\": \"wrongpassword\"\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "name": "Login - Missing Credentials",
+      "url": "{{baseUrl}}/auth/login",
+      "method": "POST",
+      "sortNum": 20002,
+      "containerId": "Auth",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "name": "Get Token Info",
+      "url": "{{baseUrl}}/tokens/info",
+      "method": "GET",
+      "sortNum": 30000,
+      "containerId": "Tokens",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Protected Route - No Token",
+      "url": "{{baseUrl}}/tokens/info",
+      "method": "GET",
+      "sortNum": 30001,
+      "containerId": "Tokens",
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "name": "Refresh Token",
+      "url": "{{baseUrl}}/auth/refresh",
+      "method": "POST",
+      "sortNum": 30002,
+      "containerId": "Tokens",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "url": "{{baseUrl}}/admin/dashboard",
+      "method": "GET",
+      "sortNum": 40000,
+      "containerId": "Admin",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Kill Switch - Test",
+      "url": "{{baseUrl}}/admin/services/test-service/kill",
+      "method": "POST",
+      "sortNum": 40001,
+      "containerId": "Admin",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"reason\": \"Test kill switch\",\n  \"dry_run\": true\n}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "name": "Audit Log",
+      "url": "{{baseUrl}}/admin/audit",
+      "method": "GET",
+      "sortNum": 40002,
+      "containerId": "Admin",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{authToken}}"
+        }
+      ],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "res-body",
+          "custom": "json.entries",
+          "action": "istype",
+          "value": "array"
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "name": "Local",
+      "default": true,
+      "data": [
+        {
+          "name": "baseUrl",
+          "value": "http://localhost:8000"
+        },
+        {
+          "name": "testEmail",
+          "value": "admin@test.com"
+        },
+        {
+          "name": "testPassword",
+          "value": "test123"
+        },
+        {
+          "name": "authToken",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
