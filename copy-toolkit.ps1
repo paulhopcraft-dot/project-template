@@ -1,4 +1,4 @@
-$projects = @('gpnet3', 'goassist3', 'govertical', 'goconnect', 'GoAgent')
+$projects = @('gpnet3', 'goassist3', 'govertical', 'goconnect', 'GoAgent', 'gomemory', 'gocontrol')
 
 foreach ($proj in $projects) {
     $dest = "C:\Dev\$proj"
@@ -19,7 +19,19 @@ foreach ($proj in $projects) {
         }
         Copy-Item 'C:\Dev\claude-code-toolkit\.claude\commands' "$dest\.claude\commands" -Recurse -Force
 
-        Write-Host "  Done: CLAUDE.md + .claude/commands" -ForegroundColor Gray
+        # Copy skills folder (remove old first)
+        if (Test-Path "$dest\.claude\skills") {
+            Remove-Item "$dest\.claude\skills" -Recurse -Force
+        }
+        Copy-Item 'C:\Dev\claude-code-toolkit\.claude\skills' "$dest\.claude\skills" -Recurse -Force
+
+        # Copy lite folder (remove old first)
+        if (Test-Path "$dest\.claude\lite") {
+            Remove-Item "$dest\.claude\lite" -Recurse -Force
+        }
+        Copy-Item 'C:\Dev\claude-code-toolkit\.claude\lite' "$dest\.claude\lite" -Recurse -Force
+
+        Write-Host "  Done: CLAUDE.md + .claude/{commands,skills,lite}" -ForegroundColor Gray
     } else {
         Write-Host "Skipped $proj (not found)" -ForegroundColor Yellow
     }

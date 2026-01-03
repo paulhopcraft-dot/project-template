@@ -1,7 +1,7 @@
 # Launch All Projects - With Window Titles
 # Opens 5 separate Windows Terminal windows with project names in title bar
 
-$projects = @("gpnet3", "goassist3", "govertical", "goconnect", "GoAgent")
+$projects = @("gpnet3", "goassist3", "govertical", "goconnect", "GoAgent", "gomemory")
 
 Write-Host "Launching Claude Code sessions..." -ForegroundColor Cyan
 
@@ -11,7 +11,8 @@ foreach ($proj in $projects) {
     if (Test-Path $path) {
         Write-Host "  Starting $proj..." -ForegroundColor Green
         # Open new window with title - use -w 0 for new window, --title for tab name
-        Start-Process wt -ArgumentList "-w new --title `"$proj`" -d `"$path`" -- cmd /k claude --continue"
+        # Using Sonnet for cost optimization (5x cheaper than Opus)
+        Start-Process wt -ArgumentList "-w new --title `"$proj`" -d `"$path`" -- cmd /k claude --model sonnet --continue"
         Start-Sleep -Milliseconds 800
     } else {
         Write-Host "  Skipping $proj - path not found" -ForegroundColor Yellow
