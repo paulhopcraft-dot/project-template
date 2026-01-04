@@ -92,7 +92,7 @@ foreach ($proj in $projects) {
     Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Gray
 
     if (-not (Test-Path $projectPath)) {
-        Write-Host "  ⚠ Project path not found: $projectPath" -ForegroundColor Red
+        Write-Host "  [WARN] Project path not found: $projectPath" -ForegroundColor Red
         $results += @{
             Project = $projectName
             Priority = $proj.Priority
@@ -118,7 +118,7 @@ foreach ($proj in $projects) {
                 }
                 $exitCode = $LASTEXITCODE
             } else {
-                Write-Host "  ⚠ No pyproject.toml found" -ForegroundColor Yellow
+                Write-Host "  [WARN] No pyproject.toml found" -ForegroundColor Yellow
                 $exitCode = 1
                 $output = "No configuration found"
             }
@@ -134,7 +134,7 @@ foreach ($proj in $projects) {
                 }
                 $exitCode = $LASTEXITCODE
             } else {
-                Write-Host "  ⚠ No package.json found" -ForegroundColor Yellow
+                Write-Host "  [WARN] No package.json found" -ForegroundColor Yellow
                 $exitCode = 1
                 $output = "No configuration found"
             }
@@ -144,11 +144,11 @@ foreach ($proj in $projects) {
         $duration = ($testEnd - $testStart).TotalSeconds
 
         if ($exitCode -eq 0) {
-            Write-Host "  ✓ PASSED" -ForegroundColor Green
+            Write-Host "  [PASS] PASSED" -ForegroundColor Green
             Write-Host "  Duration: $([math]::Round($duration, 1))s" -ForegroundColor Gray
             $status = "PASSED"
         } else {
-            Write-Host "  ✗ FAILED" -ForegroundColor Red
+            Write-Host "  [FAIL] FAILED" -ForegroundColor Red
             Write-Host "  Duration: $([math]::Round($duration, 1))s" -ForegroundColor Gray
             $status = "FAILED"
 
@@ -172,7 +172,7 @@ foreach ($proj in $projects) {
         }
 
     } catch {
-        Write-Host "  ✗ ERROR: $_" -ForegroundColor Red
+        Write-Host "  [ERR] ERROR: $_" -ForegroundColor Red
         $results += @{
             Project = $projectName
             Priority = $proj.Priority
@@ -201,11 +201,11 @@ $errors = ($results | Where-Object { $_.Status -eq "ERROR" -or $_.Status -eq "NO
 
 foreach ($r in $results) {
     $icon = switch ($r.Status) {
-        "PASSED" { "✓" }
-        "FAILED" { "✗" }
-        "ERROR" { "⚠" }
-        "NOT_FOUND" { "?" }
-        default { "?" }
+        "PASSED" { "[PASS]" }
+        "FAILED" { "[FAIL]" }
+        "ERROR" { "[ERR ]" }
+        "NOT_FOUND" { "[MISS]" }
+        default { "[????]" }
     }
     $color = switch ($r.Status) {
         "PASSED" { "Green" }
