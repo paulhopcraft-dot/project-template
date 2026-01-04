@@ -7,6 +7,10 @@
 - Created run-tests-simple.ps1 (simplified test runner)
 - Executed ecosystem tests across all 7 projects
 - Generated ECOSYSTEM-TEST-REPORT.md with detailed analysis
+- Fixed GoAgent calendar test (860/860 tests now passing)
+- Committed both test infrastructure and GoAgent fix
+  - Toolkit: 14e6d2c "test: add ecosystem test runner and comprehensive report"
+  - GoAgent: 4c8c05d "fix: calendar test now passes on weekends"
 
 ### Test Results Summary
 - 3 projects PASSED: gpnet3, goconnect, govertical
