@@ -6,6 +6,9 @@
   - Files in `test-collections/` folder
   - gocontrol-api.json, gpnet3-api.json, goconnect-api.json
 - [ ] Sync toolkit to all projects: `.\copy-toolkit.ps1`
+- [ ] Buy an AI computer
+  - Research options for local LLM inference
+  - Consider: Mac Studio M4, NVIDIA workstation, or cloud GPU
 
 ---
 
