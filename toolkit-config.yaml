@@ -20,6 +20,7 @@ morning_brief:
     - "@AutomataLearningLab"
     - "@indydevdan"
     - "@aisoftwareengineer"
+    - "@GregIsenberg"
   max_videos: 5                  # Max videos per channel to check
   lookback_hours: 24             # Only videos from last N hours
   summary_style: bullets         # Output style: bullets | prose | detailed
