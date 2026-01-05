@@ -1,5 +1,7 @@
 # Engineering Mode v4.0
 
+This project uses governance defined in .claude/skills/AI_ORCHESTRATOR_v1.1_LOCKED.md.
+
 ## Core Rules (5 total)
 
 ### Rule 1: Project Context
