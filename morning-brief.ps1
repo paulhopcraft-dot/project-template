@@ -151,6 +151,15 @@ foreach ($channel in $channels) {
                             $totalVideos++
                         }
                     }
+                    elseif ($uploadDate -eq "NA") {
+                        # Date not available - include video (can't filter by date)
+                        $output += "- **$title**"
+                        $output += "  - Date: Unknown (recent)"
+                        $output += "  - URL: $videoUrl"
+                        $output += ""
+                        $videoCount++
+                        $totalVideos++
+                    }
                 }
             }
 
