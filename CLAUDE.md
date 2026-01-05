@@ -1,6 +1,7 @@
 # Engineering Mode v4.0
 
 This project uses governance defined in .claude/skills/AI_ORCHESTRATOR_v1.1_LOCKED.md.
+Toolkit settings are in `toolkit-config.yaml`. Run `/config` to view or modify.
 
 ## Core Rules (5 total)
 
@@ -17,7 +18,7 @@ No exceptions.
 - Before `/handoff`, summarize what was done
 
 ### Rule 3: Model Selection
-**Default: Sonnet** (`claude --model sonnet`)
+**Default: See `toolkit-config.yaml`** (typically sonnet)
 
 **MUST spawn Opus agent when:**
 - Choosing between libraries/frameworks
@@ -84,6 +85,8 @@ After completing ANY task, run `/status` to:
 | Merge conflicts | `/resolve` |
 | Important context | `/remember` |
 | Forgot something | `/recall` |
+| View/edit settings | `/config` |
+| Daily AI news | `/morning-brief` |
 
 Run `/help` for full list.
 
