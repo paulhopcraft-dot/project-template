@@ -12,6 +12,221 @@
 
 ---
 
+## Marketing & Discoverability
+
+### SEO & LLM Discoverability Strategy
+**Priority: HIGH - Required for product adoption**
+
+Each product needs to be discoverable by:
+- Traditional search (Google, Bing)
+- LLM search (ChatGPT, Claude, Perplexity, SearchGPT)
+- AI agents looking for tools/services
+
+#### GoVertical (Directory Platform)
+**Target:** "Local business directories", "niche directories", "vertical directories"
+
+Strategy:
+- [ ] Traditional SEO
+  - Schema.org LocalBusiness markup for all listings
+  - OpenGraph + Twitter Card meta tags
+  - XML sitemap generation (auto-update)
+  - robots.txt optimization
+  - Semantic HTML5 structure
+  - Fast Core Web Vitals scores
+
+- [ ] LLM Optimization
+  - Structured data in JSON-LD format
+  - Clear product descriptions in natural language
+  - FAQ sections (what, why, how)
+  - Use cases and examples
+  - API documentation in markdown
+  - Pricing page with clear value props
+
+- [ ] Content Strategy
+  - Blog posts: "How to build a directory", "Vertical vs horizontal directories"
+  - Case studies with measurable outcomes
+  - Integration guides for popular tools
+  - Community forum for discussions
+
+- [ ] Technical Implementation
+  - Server-side rendering (SSR) for all pages
+  - Static site generation (SSG) for directory pages
+  - Pre-rendered meta tags
+  - Canonical URLs
+  - Breadcrumb navigation
+
+#### GPNet3 (API Management)
+**Target:** "API management tools", "API versioning", "API governance"
+
+Strategy:
+- [ ] Developer-focused SEO
+  - Code examples in multiple languages
+  - Interactive API playground
+  - Comprehensive API documentation
+  - GitHub presence with examples
+  - npm/pip package with good README
+
+- [ ] LLM Discoverability
+  - Clear feature comparison vs competitors
+  - Use cases: "When to use GPNet3"
+  - Integration guides: Express, FastAPI, etc.
+  - Troubleshooting guides
+  - Changelog in semantic versioning
+
+- [ ] Community Building
+  - Discord/Slack for developers
+  - Stack Overflow monitoring
+  - GitHub Discussions enabled
+  - Tutorial videos on YouTube
+  - Dev.to blog posts
+
+#### GoConnect (Communication Hub)
+**Target:** "Multi-channel messaging", "unified inbox", "customer communication platform"
+
+Strategy:
+- [ ] Product-led SEO
+  - Integration directory (Slack, Discord, Email, SMS)
+  - Comparison pages: "GoConnect vs Intercom"
+  - Feature pages: "Unified Inbox", "Message Routing"
+  - Industry-specific landing pages
+
+- [ ] LLM Citations
+  - Press releases on integration launches
+  - Partner co-marketing content
+  - Customer testimonials with metrics
+  - Security & compliance documentation
+  - GDPR/CCPA compliance pages
+
+- [ ] Content Marketing
+  - "State of Customer Communication" report
+  - Best practices guides
+  - Integration how-tos
+  - ROI calculator
+
+#### GoControl (Authorization Platform)
+**Target:** "API authorization", "permission management", "multi-tenant auth"
+
+Strategy:
+- [ ] Security-focused SEO
+  - Security documentation (OAuth2, JWT, etc.)
+  - Compliance certifications (SOC2, ISO)
+  - Audit log examples
+  - Threat model documentation
+  - Zero-trust architecture guides
+
+- [ ] Developer Trust Building
+  - Open-source components on GitHub
+  - Security advisories page
+  - Penetration test reports (summary)
+  - Bug bounty program
+  - Architecture diagrams
+
+- [ ] Enterprise Content
+  - White papers on authorization patterns
+  - Case studies: enterprise customers
+  - Comparison: "Build vs Buy"
+  - ROI analysis for security teams
+
+#### GoMemory (Memory Service)
+**Target:** "AI agent memory", "context management", "conversation history"
+
+Strategy:
+- [ ] AI-first SEO
+  - Integration guides for Claude, GPT, Gemini
+  - Memory architecture documentation
+  - RAG (Retrieval Augmented Generation) guides
+  - Vector database comparisons
+  - Embedding strategies
+
+- [ ] Technical Depth
+  - Research papers on memory systems
+  - Benchmarks vs competitors
+  - Open-source SDKs
+  - Example applications
+  - Architecture patterns
+
+- [ ] Developer Experience
+  - Quick start in 5 minutes
+  - Playground with live demo
+  - Code templates for common use cases
+  - Troubleshooting decision tree
+
+#### GoAgent (Execution Platform)
+**Target:** "AI agent platform", "tool calling", "agent orchestration"
+
+Strategy:
+- [ ] AI Platform SEO
+  - Tool library showcase
+  - Agent examples and templates
+  - Integration marketplace
+  - Use case gallery
+  - Performance benchmarks
+
+- [ ] Developer Ecosystem
+  - Public tool registry
+  - Community-contributed tools
+  - Agent templates repository
+  - Tutorial series
+  - Certification program
+
+- [ ] Thought Leadership
+  - Research blog on agent patterns
+  - Conference talks
+  - Open-source reference implementations
+  - Podcast appearances
+
+#### GoAssist (User Interface)
+**Target:** "AI assistant", "conversational UI", "chat interface"
+
+Strategy:
+- [ ] User-focused SEO
+  - Use case pages by industry
+  - "How it works" explainer
+  - Privacy & data handling
+  - Customization showcase
+  - Widget demos
+
+- [ ] Product Marketing
+  - Free tier for testing
+  - Live demo on homepage
+  - Customer success stories
+  - Video testimonials
+  - Feature comparison matrix
+
+---
+
+## Universal Tactics (All Products)
+
+- [ ] **LLM Training Data Presence**
+  - Ensure documentation is crawlable
+  - Create Wikipedia page (if notable)
+  - Get mentioned in authoritative sources
+  - GitHub README files comprehensive
+  - Stack Overflow answers referencing products
+
+- [ ] **Structured Data**
+  - Product schema.org markup
+  - SoftwareApplication type
+  - Review/rating markup
+  - FAQ schema
+  - BreadcrumbList schema
+
+- [ ] **Social Proof**
+  - Product Hunt launch
+  - Y Combinator News posts
+  - Reddit AMAs and discussions
+  - LinkedIn articles
+  - Twitter/X presence
+
+- [ ] **AI Agent Accessibility**
+  - Public APIs with OpenAPI specs
+  - Clear pricing on main page
+  - Getting started < 5 minutes
+  - Free tier or trial available
+  - Documentation as markdown (not PDFs)
+
+---
+
 ## Blocking (Before SMB customers)
 
 ### Complete GoMemory to 80%
