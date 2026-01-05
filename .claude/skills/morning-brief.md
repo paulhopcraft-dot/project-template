@@ -2,11 +2,27 @@
 
 Get your daily AI news summary from configured YouTube channels.
 
+## Quick Start
+
+```powershell
+# First time: install yt-dlp
+winget install yt-dlp
+
+# Run the brief
+.\morning-brief.ps1
+
+# Then ask Claude:
+# "Read briefs/2026-01-05.md and summarize"
+```
+
 ## Usage
 
-- `/morning-brief` - Full brief from all channels
-- `/morning-brief quick` - Headlines only (no details)
-- `/morning-brief @channel` - Brief from specific channel
+- `.\morning-brief.ps1` - Fetch videos from all channels
+- `.\morning-brief.ps1 -Hours 48` - Fetch from last 48 hours
+- `.\morning-brief.ps1 -Channel "@ycombinator"` - Specific channel only
+- `.\morning-brief.ps1 -Install` - Auto-install yt-dlp
+
+After running, ask Claude to read and summarize the brief file.
 
 ## Instructions
 

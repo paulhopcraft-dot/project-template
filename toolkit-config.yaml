@@ -10,10 +10,10 @@ thinking_mode: normal            # Thinking mode: normal | extended
 morning_brief:
   enabled: true
   channels:                      # YouTube channels to summarize
-    - "@AllInPodcast"
-    - "@lexfridman"
-    - "@DavidShapiroPAI"
-    - "@MatthewBerman"
+    - "@aiDotEngineer"
+    - "@NateBJones"
+    - "@ycombinator"
+    - "@EfficientNLP"
   max_videos: 5                  # Max videos per channel to check
   lookback_hours: 24             # Only videos from last N hours
   summary_style: bullets         # Output style: bullets | prose | detailed
