@@ -130,6 +130,9 @@ Details: TBD - need user input on specific use case
 ### Reduce Churn prompt
 Details: TBD - need user input on specific use case
 
+### Karpathy "Orchestrators" prompt
+Details: Paste prompt from YouTube video about Karpathy and how we're becoming orchestrators (not coders)
+
 ---
 
 ## Key Architecture Risks (from ecosystem review)
