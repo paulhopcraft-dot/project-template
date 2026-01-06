@@ -45,7 +45,7 @@ class ModernPitchCanvas(canvas.Canvas):
 def create_preventli_pitch_deck():
     """Create stylish Preventli pitch deck PDF"""
 
-    filename = "Preventli_Pitch_Deck.pdf"
+    filename = "Preventli_Pitch_Deck_Fixed.pdf"
     doc = SimpleDocTemplate(
         filename,
         pagesize=A4,
@@ -73,8 +73,8 @@ def create_preventli_pitch_deck():
         'ModernTitle',
         parent=styles['Title'],
         fontName='Helvetica-Bold',
-        fontSize=42,
-        spaceAfter=0.2*inch,
+        fontSize=32,
+        spaceAfter=0.15*inch,
         textColor=primary_blue,
         alignment=TA_LEFT
     )
@@ -84,8 +84,8 @@ def create_preventli_pitch_deck():
         'ModernSubtitle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=18,
-        spaceAfter=0.3*inch,
+        fontSize=14,
+        spaceAfter=0.2*inch,
         textColor=dark_text,
         alignment=TA_LEFT
     )
@@ -95,9 +95,9 @@ def create_preventli_pitch_deck():
         'SlideTitle',
         parent=styles['Heading1'],
         fontName='Helvetica-Bold',
-        fontSize=28,
-        spaceAfter=0.4*inch,
-        spaceBefore=0.2*inch,
+        fontSize=20,
+        spaceAfter=0.25*inch,
+        spaceBefore=0.1*inch,
         textColor=primary_blue,
         alignment=TA_LEFT
     )
@@ -107,21 +107,21 @@ def create_preventli_pitch_deck():
         'SectionHead',
         parent=styles['Heading2'],
         fontName='Helvetica-Bold',
-        fontSize=16,
-        spaceAfter=0.2*inch,
-        spaceBefore=0.3*inch,
+        fontSize=13,
+        spaceAfter=0.15*inch,
+        spaceBefore=0.2*inch,
         textColor=dark_text,
         alignment=TA_LEFT
     )
 
-    # Body text - larger for presentations
+    # Body text - appropriate for presentations
     body_style = ParagraphStyle(
         'ModernBody',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=14,
-        spaceAfter=0.15*inch,
-        leading=18,
+        fontSize=11,
+        spaceAfter=0.1*inch,
+        leading=14,
         textColor=dark_text,
         alignment=TA_LEFT
     )
@@ -131,9 +131,9 @@ def create_preventli_pitch_deck():
         'LargeBody',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=16,
-        spaceAfter=0.2*inch,
-        leading=20,
+        fontSize=12,
+        spaceAfter=0.15*inch,
+        leading=15,
         textColor=dark_text,
         alignment=TA_LEFT
     )
@@ -143,11 +143,11 @@ def create_preventli_pitch_deck():
         'ModernBullet',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=14,
-        spaceAfter=0.1*inch,
-        leading=18,
+        fontSize=11,
+        spaceAfter=0.08*inch,
+        leading=14,
         textColor=dark_text,
-        leftIndent=0.3*inch,
+        leftIndent=0.25*inch,
         bulletIndent=0.1*inch,
         alignment=TA_LEFT
     )
@@ -157,9 +157,9 @@ def create_preventli_pitch_deck():
         'ModernHighlight',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=18,
-        spaceAfter=0.3*inch,
-        spaceBefore=0.3*inch,
+        fontSize=14,
+        spaceAfter=0.2*inch,
+        spaceBefore=0.2*inch,
         textColor=accent_orange,
         alignment=TA_CENTER
     )
@@ -168,7 +168,7 @@ def create_preventli_pitch_deck():
     story = []
 
     # === SLIDE 1: TITLE ===
-    story.append(Spacer(1, 1.5*inch))
+    story.append(Spacer(1, 1*inch))
     story.append(Paragraph("Preventli", title_style))
     story.append(Paragraph("The Workplace Risk & Early Intervention Platform", subtitle_style))
     story.append(Spacer(1, 0.3*inch))
@@ -215,7 +215,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (-1, 0), primary_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -246,7 +246,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 2), (-1, 2), accent_orange),  # Highlight opportunity row
         ('TEXTCOLOR', (0, 2), (-1, 2), colors.white),
         ('FONTNAME', (0, 2), (-1, 2), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -294,7 +294,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (0, -1), primary_blue),
         ('TEXTCOLOR', (0, 0), (0, -1), colors.white),
         ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
         ('ALIGN', (0, 0), (0, -1), 'CENTER'),
         ('ALIGN', (1, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -324,7 +324,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (-1, 0), primary_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 11),
+        ('FONTSIZE', (0, 0), (-1, -1), 9),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -513,7 +513,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (0, -1), success_green),
         ('TEXTCOLOR', (0, 0), (0, -1), colors.white),
         ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 14),
+        ('FONTSIZE', (0, 0), (-1, -1), 11),
         ('ALIGN', (0, 0), (0, -1), 'CENTER'),
         ('ALIGN', (1, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -540,7 +540,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (-1, 0), primary_blue),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -569,7 +569,7 @@ def create_preventli_pitch_deck():
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('BACKGROUND', (1, 0), (1, 0), success_green),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -657,7 +657,7 @@ def create_preventli_pitch_deck():
         ('BACKGROUND', (0, 0), (-1, 0), warning_red),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-        ('FONTSIZE', (0, 0), (-1, -1), 11),
+        ('FONTSIZE', (0, 0), (-1, -1), 9),
         ('GRID', (0, 0), (-1, -1), 1, colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
@@ -683,7 +683,7 @@ def create_preventli_pitch_deck():
 
     story.append(Spacer(1, 0.5*inch))
     story.append(Paragraph('"Preventli turns weak signals into strong outcomes."',
-                 ParagraphStyle('FinalLine', parent=highlight_style, fontSize=24, textColor=primary_blue)))
+                 ParagraphStyle('FinalLine', parent=highlight_style, fontSize=16, textColor=primary_blue)))
 
     # Build PDF
     doc.build(story)
