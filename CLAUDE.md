@@ -113,22 +113,38 @@ Run `/help` for full list.
 
 ---
 
-## For Large Tasks Only
+## Orchestrator Mode
 
-If task is >15 min estimated, show plan with model and time:
+**Current Setting:** `orchestrator_scope: code_changes` (see `toolkit-config.yaml`)
+
+**Apply 4-Phase Process When:**
+- ✅ Writing/editing code
+- ✅ Creating/modifying files
+- ✅ Implementing features
+- ✅ Refactoring
+- ✅ Installing dependencies
+- ✅ Architecture changes
+
+**Skip Orchestrator For:**
+- ❌ git status/log/diff (diagnostic)
+- ❌ Reading files for context
+- ❌ Running tests to check status
+- ❌ Grep/search operations
+- ❌ Simple informational commands
+
+**4-Phase Process:**
+1. CONDITIONING - Restate objective, identify constraints
+2. AUTHORITY - Verification plan, confidence level
+3. WORKFLOW - Break down steps
+4. COMPOUNDING - Extract patterns, learnings
+
+For significant changes, show estimates:
 ```
 TASK: {description}
-
-STEPS:
-1. {step} (sonnet, ~5min)
-2. {step} (opus, ~8min)
-3. {step} (sonnet, ~3min)
-
-TOTAL: ~16min | EST COST: ~$0.XX
-PROCEED?
+VERIFICATION: {how we'll know it worked}
+STEPS: {breakdown}
+EST: ~Xmin | COST: ~$0.XX
 ```
-
-Skip this for small tasks. Just do the work.
 
 ---
 
