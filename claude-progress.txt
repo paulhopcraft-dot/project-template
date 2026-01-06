@@ -38,6 +38,14 @@
   - **Database Ready**: Migration 002_add_memory_tables created
   - **Testing**: 38/39 existing tests passing, memory routes integrated
 
+- **✅ Created Comprehensive Toolkit Cheat Sheet**
+  - Complete reference guide with 50+ commands organized by use case
+  - Quick start workflows and daily development patterns
+  - Model selection rules (Sonnet vs Opus vs Haiku)
+  - Emergency recovery commands and troubleshooting
+  - Pro tips and best practices for efficient toolkit usage
+  - Committed as TOOLKIT-CHEAT-SHEET.md (225 lines)
+
 ### Status
 - yt-dlp fully functional (morning brief ready)
 - Document factory ready (PDF/DOCX/XLSX/PPTX generation)
