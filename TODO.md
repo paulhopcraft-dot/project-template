@@ -327,6 +327,25 @@ Details: TBD - need user input on scope and purpose
 
 ---
 
+### Build Papua New Guinea Compliance/Regulation System
+**Type: Compliance tracking system**
+**Source: Mentioned by Lisa**
+
+Purpose: Compliance or regulation system for Papua New Guinea
+
+Details: TBD - need to clarify with Lisa:
+- What specific compliance/regulation area?
+- Industry sector (mining, forestry, finance, etc.)?
+- Regulatory body requirements?
+- Tracking vs reporting vs enforcement?
+
+Would potentially integrate with:
+- GoControl for authorization/audit
+- GoConnect for notifications
+- GoAgent for automation
+
+---
+
 ## Decisions
 
 ### Decision: Deploy to Vercel vs Self-host
