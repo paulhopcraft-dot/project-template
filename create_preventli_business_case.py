@@ -37,7 +37,7 @@ class EconomistCanvas(canvas.Canvas):
 def create_preventli_business_case():
     """Create comprehensive Preventli business case PDF"""
 
-    filename = "Preventli_Business_Case_Comprehensive.pdf"
+    filename = "Preventli_Business_Case_Updated.pdf"
     doc = SimpleDocTemplate(
         filename,
         pagesize=A4,
@@ -147,17 +147,17 @@ def create_preventli_business_case():
     # Cover page
     story.append(Spacer(1, 1.5*inch))
     story.append(Paragraph("Preventli", title_style))
-    story.append(Paragraph("Anonymous Signals → Early Action → Defensible Proof", subtitle_style))
+    story.append(Paragraph("GPNet + Whistleblower Compliance = Complete Risk Platform", subtitle_style))
     story.append(Spacer(1, 0.5*inch))
-    story.append(Paragraph("A prevention-first workplace risk system for Australian SMBs", body_style))
+    story.append(Paragraph("Extending GPNet's proven workplace risk platform to meet new legislative requirements", body_style))
     story.append(Spacer(1, 1*inch))
 
     # Key metrics box
     metrics_data = [
-        ['Market Opportunity', 'Strategic Advantage'],
-        ['Blue ocean in $2.3B compliance market', 'Signal-to-prevention vs compliance theatre'],
-        ['30-500 employee SMBs underserved', 'GPNet risk engine integration ready'],
-        ['Psychosocial hazard obligations', 'Defensible audit trails'],
+        ['GPNet Foundation', 'Legislative Opportunity'],
+        ['Proven platform with existing customers', 'New whistleblower protection laws'],
+        ['Established workplace risk workflows', 'SMB compliance gap in market'],
+        ['Trusted by Australian SMBs', 'Immediate upgrade revenue potential'],
     ]
 
     metrics_table = Table(metrics_data, colWidths=[3*inch, 3*inch])
@@ -180,26 +180,33 @@ def create_preventli_business_case():
     # Executive Summary
     story.append(Paragraph("Executive Summary", section_style))
     story.append(Paragraph(
-        "Most businesses don't fail because people stayed silent. They fail because <b>nothing happened early enough</b>.",
+        "<b>GPNet is an established workplace injury and claims management platform</b> serving Australian SMBs. "
+        "New legislative requirements for whistleblower protection create an immediate opportunity to extend "
+        "GPNet's proven risk engine with anonymous reporting functionality.",
         body_style
     ))
     story.append(Paragraph(
-        "Preventli is a Workplace Risk Signal & Prevention System that transforms anonymous workplace concerns "
-        "into structured prevention cases with defensible audit trails. Built on GPNet's proven risk engine, "
-        "it positions businesses as prevention-first rather than compliance-reactive.",
+        "Preventli represents this natural evolution—transforming GPNet from reactive claims processing "
+        "to a complete 'signal-to-prevention' platform. The technical integration is straightforward: "
+        "anonymous workplace concerns become new case types processed through GPNet's existing workflows.",
         body_style
     ))
     story.append(Paragraph(
-        "This represents a blue ocean opportunity within the saturated compliance market—moving from "
-        "'How do we meet whistleblower law?' to 'How do we stop people getting hurt—and prove we tried?'",
+        "This upgrade path serves existing customers first, provides clear compliance value, and positions "
+        "GPNet uniquely in a market where competitors treat whistleblower reporting as an afterthought.",
         quote_style
     ))
 
     # Market Analysis
     story.append(Paragraph("Market Analysis", section_style))
-    story.append(Paragraph("The Structural Gap", subsection_style))
+    story.append(Paragraph("Legislative Driver & Market Opportunity", subsection_style))
     story.append(Paragraph(
-        "The Australian workplace compliance market exhibits a three-layer structure with a critical gap:",
+        "New Australian whistleblower protection laws require businesses to provide safe reporting mechanisms. "
+        "While large enterprises have compliance resources, <b>SMBs face a capability gap</b> that GPNet is uniquely positioned to fill.",
+        body_style
+    ))
+    story.append(Paragraph(
+        "The current market exhibits a problematic structure:",
         body_style
     ))
 
@@ -227,17 +234,18 @@ def create_preventli_business_case():
     story.append(Spacer(1, 0.3*inch))
 
     story.append(Paragraph(
-        "SMBs face increasing regulatory pressure from psychosocial hazard obligations, WorkCover exposure, "
-        "and Fair Work escalation pathways—but lack affordable systems that prove they took reasonable steps "
-        "to prevent harm. One incident can destroy a small business.",
+        "<b>GPNet's existing customers already trust the platform</b> for workplace injury management. "
+        "Adding whistleblower functionality leverages this established relationship and proven infrastructure, "
+        "creating immediate upgrade revenue while ensuring SMBs can meet new compliance obligations.",
         body_style
     ))
 
     # The Preventli Solution
     story.append(Paragraph("The Preventli Solution", section_style))
-    story.append(Paragraph("Prevention-First Architecture", subsection_style))
+    story.append(Paragraph("Extending GPNet's Proven Architecture", subsection_style))
     story.append(Paragraph(
-        "Preventli transforms any workplace concern into a managed prevention case through six integrated stages:",
+        "GPNet already processes workplace injuries as structured cases with evidence, timelines, and audit trails. "
+        "<b>Preventli simply adds anonymous intake</b> as a new case type, leveraging the existing risk engine:",
         body_style
     ))
 
@@ -271,11 +279,11 @@ def create_preventli_business_case():
 
     advantages_data = [
         ['Advantage', 'Description', 'Competitive Impact'],
-        ['Single System', 'Psychosocial hazards and physical injuries managed together', 'No data silos or duplication'],
-        ['Prevention Loop', 'Early signal capture reduces downstream claims', 'Lower WorkCover and regulatory exposure'],
-        ['Defensibility', 'Complete audit trail proves reasonable steps taken', 'Regulatory protection'],
-        ['SMB Pricing', 'Big 4 outcomes at software pricing', 'Underserved market access'],
-        ['Existing Architecture', 'GPNet risk engine integration ready', 'Minimal rebuild required'],
+        ['Proven Platform', 'GPNet already operational with existing customers', 'Lower risk, faster deployment'],
+        ['Legislative Compliance', 'Meets new whistleblower protection requirements', 'Regulatory necessity drives sales'],
+        ['Existing Customer Base', 'Upgrade existing GPNet customers first', 'Higher conversion, predictable revenue'],
+        ['Minimal Development', 'Anonymous intake added to existing workflows', 'Fast time-to-market, low cost'],
+        ['Single System', 'Whistleblower and injury cases managed together', 'No data silos, unified platform'],
     ]
 
     advantages_table = Table(advantages_data, colWidths=[1.5*inch, 2.5*inch, 2*inch])
@@ -295,17 +303,17 @@ def create_preventli_business_case():
     # Competitive Positioning
     story.append(Paragraph("Competitive Positioning", section_style))
     story.append(Paragraph(
-        "This approach inverts typical market positioning:",
+        "While competitors scramble to build whistleblower solutions from scratch, <b>GPNet already has the foundation</b>:",
         body_style
     ))
     story.append(Paragraph(
-        "• <b>Competitors ask:</b> 'How do we meet whistleblower law?'<br/>"
-        "• <b>Preventli asks:</b> 'How do we stop people getting hurt—and prove we tried?'",
+        "• <b>Competitors:</b> Building new systems to meet compliance<br/>"
+        "• <b>GPNet:</b> Adding anonymous intake to proven risk platform",
         quote_style
     ))
     story.append(Paragraph(
-        "Instead of bolting whistleblowing onto HR software, Preventli absorbs it into a prevention engine. "
-        "This is rare—possibly unique—at SMB scale. The system closes the loop that every other vendor leaves open.",
+        "This creates a fundamental advantage: existing customers trust GPNet, the platform is operational, "
+        "and anonymous reporting becomes a natural workflow extension rather than a bolt-on compliance tool.",
         body_style
     ))
 
@@ -415,15 +423,15 @@ def create_preventli_business_case():
     # Bottom Line
     story.append(Paragraph("Bottom Line", section_style))
     story.append(Paragraph(
-        "This is a blue ocean inside a red ocean. The market for shallow reporting tools is saturated, "
-        "but the market for signal-to-prevention systems is wide open. GPNet's existing architecture is "
-        "structurally suited to capture this opportunity with minimal rebuild—it's a positioning and "
-        "execution problem, not a demand problem.",
+        "<b>GPNet is already operational with paying customers</b> who trust the platform for workplace risk management. "
+        "New legislative requirements create immediate demand for whistleblower functionality that can be added "
+        "with minimal development effort.",
         body_style
     ))
     story.append(Paragraph(
-        "Preventli gives businesses early warning, structured action, anti-retaliation protection, "
-        "and defensible proof at an SMB-appropriate cost. It doesn't replace leadership—it protects leaders who act.",
+        "This is not a startup risk—it's a proven platform extension. Existing customers provide immediate "
+        "upgrade revenue, legislative compliance drives market urgency, and the technical integration leverages "
+        "GPNet's established architecture. This represents execution opportunity, not demand validation.",
         body_style
     ))
 
