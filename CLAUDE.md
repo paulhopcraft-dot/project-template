@@ -3,6 +3,23 @@
 This project uses governance defined in .claude/skills/AI_ORCHESTRATOR_v1.1_LOCKED.md.
 Toolkit settings are in `toolkit-config.yaml`. Run `/config` to view or modify.
 
+## 🎓 Guided Mode (Interactive Teacher)
+
+**For non-technical users:** Guided mode transforms the toolkit into an interactive development teacher.
+
+**Status:** See `guided_mode.enabled` in `toolkit-config.yaml` (currently: **ON**)
+
+**What it does:**
+- Explains WHY we do each step
+- Suggests which toolkit features to use when
+- Asks for approval before risky actions
+- Shows best practices as we work
+- Teaches you to recognize patterns
+
+**Full guide:** See `GUIDED-WORKFLOW.md` for complete walkthrough of development lifecycle.
+
+**Quick Start:** Just say "I want to add [feature]" and I'll guide you through planning, building, testing, reviewing, committing, and deploying with explanations at every step.
+
 ## Core Rules (5 total)
 
 ### Rule 1: Project Context
