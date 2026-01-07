@@ -1,5 +1,14 @@
 # Todo List
 
+## 🔥 Active Work
+- [ ] **Review workplace safety signal system - Convert GPNet → Full whistleblower system**
+  - Analyze current GPNet capabilities
+  - Design whistleblower-specific features (anonymous reporting, case tracking, etc.)
+  - Plan implementation approach
+  - Status: Not started
+
+---
+
 ## Immediate
 - [ ] Run ecosystem tests: `.\run-ecosystem-tests.ps1`
 - [ ] Import Thunder Client collections into VS Code
