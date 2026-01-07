@@ -17,6 +17,14 @@ foreach ($proj in $projects) {
         # Copy transcribe-video.ps1
         Copy-Item 'C:\Dev\claude-code-toolkit\transcribe-video.ps1' "$dest\transcribe-video.ps1" -Force
 
+        # Copy analyze-video.ps1
+        Copy-Item 'C:\Dev\claude-code-toolkit\analyze-video.ps1' "$dest\analyze-video.ps1" -Force
+
+        # Copy discoveries folder structure (if it doesn't exist)
+        if (!(Test-Path "$dest\discoveries")) {
+            Copy-Item 'C:\Dev\claude-code-toolkit\discoveries' "$dest\discoveries" -Recurse -Force
+        }
+
         # Ensure .claude folder exists
         if (!(Test-Path "$dest\.claude")) {
             New-Item -ItemType Directory -Path "$dest\.claude" -Force | Out-Null
@@ -40,7 +48,7 @@ foreach ($proj in $projects) {
         }
         Copy-Item 'C:\Dev\claude-code-toolkit\.claude\lite' "$dest\.claude\lite" -Recurse -Force
 
-        Write-Host "  Done: CLAUDE.md, toolkit-config.yaml, GUIDED-WORKFLOW.md, transcribe-video.ps1 + .claude/{commands,skills,lite}" -ForegroundColor Gray
+        Write-Host "  Done: CLAUDE.md, toolkit-config.yaml, GUIDED-WORKFLOW.md, transcribe-video.ps1, analyze-video.ps1 + .claude/{commands,skills,lite} + discoveries/" -ForegroundColor Gray
     } else {
         Write-Host "Skipped $proj (not found)" -ForegroundColor Yellow
     }
